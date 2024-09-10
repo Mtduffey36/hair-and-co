@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "express": "^4.20.0",
+    "mongoose": "^8.6.1",
     "react": "^18.3.1",
+    "react-calendly": "^4.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
