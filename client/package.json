@@ -12,8 +12,10 @@
   "dependencies": {
     "@headlessui/react": "^2.1.7",
     "@heroicons/react": "^2.1.5",
+    "autoprefixer": "^10.4.20",
     "express": "^4.20.0",
     "mongoose": "^8.6.1",
+    "postcss": "^8.4.45",
     "react": "^18.3.1",
     "react-calendly": "^4.3.1",
     "react-dom": "^18.3.1"
