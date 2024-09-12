@@ -12,13 +12,19 @@ module.exports = {
     './public/index.html',
   ],
   theme: {
-    colors: {
-      'rosy-brown': '#C2A29D',
-      'khaki': '#B5A283',
-      'dim-gray': '#64696D',
-      'charcoal': '3D4750',
-      'timberwolf': '#CDD3D1',
-    },
+    extend: {
+      colors: {
+        'rosy-brown': '#C2A29D',
+        'khaki': '#B5A283',
+        'dim-gray': '#64696D',
+        'charcoal': '3D4750',
+        'timberwolf': '#CDD3D1',
+      },
+      fontFamily: {
+        montserrat: ['Montserrat', 'sans-serif'],
+        fraunces: ['Fraunces', 'serif'],
+      }
+    }
   },
   // ...
 }
