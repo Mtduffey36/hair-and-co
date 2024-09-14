@@ -1,4 +1,4 @@
-import { RiFacebookFill, RiInstagramFill, RiTwitterXFill } from "@remixicon/react"
+import { RiFacebookFill, RiInstagramFill } from "@remixicon/react"
 
 const Footer = () => {
     return (
@@ -11,17 +11,11 @@ const Footer = () => {
                         aria-label="Visit our Facebook page">
                             <RiFacebookFill />
                         </a>
-                    <a href="https://www.instagram.com"
+                    <a href="https://www.instagram.com/hairandcompanysalon/"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="Visit our Instagram page">
                             <RiInstagramFill />
-                        </a>
-                        <a href="https://www.twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Visit our Instagram page">
-                            <RiTwitterXFill />
                         </a>
                 </div>
                  <p className="text-sm"> &copy; 2024 Hair & Co. All rights reserved.</p>
