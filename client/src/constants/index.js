@@ -29,7 +29,7 @@ export const LINKS = [
   },
   {
     name: "Reviews",
-    link: "#Reviews",
+    link: "#reviews",
   },
   {
     name: "Contact",

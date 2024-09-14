@@ -9,6 +9,7 @@ import ContactUs from "./components/ContactUs";
 import Footer from "./components/Footer";
 import Lightbox from "yet-another-react-lightbox";
 import OurWork from "./components/OurWork";
+
 const App = () => {
   return (
     <main className="overflow-x-hidden antialiased text-neutral-800">
