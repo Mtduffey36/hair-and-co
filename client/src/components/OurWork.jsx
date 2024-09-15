@@ -1,13 +1,22 @@
+import { useNavigate } from "react-router-dom";
+
 import * as React from 'react'
 import Lightbox from "yet-another-react-lightbox"
 import "yet-another-react-lightbox/styles.css"
 
+//photo gallery
 import HairBlowout from "../assets/HairBlowout.jpg"
 import slide1 from "../assets/MeganHairOne.jpg";
 import slide2 from "../assets/HairShots.jpg";
 import slide3 from "../assets/CopperHair.jpg";
 
+
 const OurWork = () => {
+        const navigate = useNavigate();
+    
+        const handleBookingClick = () => {
+            navigate("/booking")
+        }
 
     const [open, setOpen] = React.useState(false);
 
@@ -38,8 +47,11 @@ const OurWork = () => {
                     
                     <div className="flex items-center rounded-xl bg-rose-200 p-2
                         px-6 font-sans font-medium text-black hover:bg-gray-500">
-                    <button> Book Now!</button>
+                    <button onClick={handleBookingClick}> Book Now!</button>
                     </div>
+             
+
+                   
                 </p>
             </div>
         </section>

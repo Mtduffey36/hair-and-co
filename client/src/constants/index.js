@@ -6,7 +6,13 @@ import portfolio3 from "../assets/Stylist3.jpg";
 import slide1 from "../assets/MeganHairOne.jpg";
 import slide2 from "../assets/HairShots.jpg";
 import slide3 from "../assets/CopperHair.jpg";
+
+
 export const LINKS = [
+  {
+    name: "Sign In",
+    link: "#sign in",
+  },
   {
     name: "Book appointment",
     link: "#book appointment",
@@ -50,17 +56,23 @@ export const SLIDES_CONTENT = [
     alt: "copper",
   },
 ];
+
+
 export const HERO_CONTENT = {
   title: "Hair & Co",
   subtitle: "Hair & Company delivers a salon experience that will leave you looking stylish and beautiful while feeling relaxed and pampered.",
   image: hero,
 };
+
+
 export const SERVICES_CONTENT = [
   {
     image: HairImage,
     alt: "Cuts (a la cart)",
   },
 ];
+
+
 export const PORTFOLIO_PROJECTS = [
   {
     id: 1,
@@ -87,6 +99,8 @@ export const PORTFOLIO_PROJECTS = [
     link: "#",
   },
 ];
+
+
 export const REVIEWS = {
   text: "Hear what our clients have to say about their experiences with Hair & Co. We take pride in our work and are committed to delivering top-notch services.",
   reviews: [
@@ -128,6 +142,8 @@ export const REVIEWS = {
     },
   ],
 };
+
+
 export const CONTACT_INFO = {
   text: "Have questions or need more information? Get in touch with us, and we ll be happy to assist you.",
   phone: {
