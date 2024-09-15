@@ -1,0 +1,82 @@
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations'; 
+
+const LoginModal = ({ isOpen, onClose }) => {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+      
+      localStorage.setItem('token', data.login.token);
+      onClose();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
+      <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div className="mt-3 text-center">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">Sign In</h3>
+          <form className="mt-2 px-7 py-3" onSubmit={handleFormSubmit}>
+            <input
+              className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mb-4"
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formState.email}
+              onChange={handleChange}
+            />
+            <input
+              className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mb-4"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formState.password}
+              onChange={handleChange}
+            />
+            <button
+              type="submit"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Sign In
+            </button>
+          </form>
+          {error && (
+            <p className="text-red-500 text-xs italic">
+              {error.message}
+            </p>
+          )}
+        </div>
+        <div className="items-center px-4 py-3">
+          <button
+            id="ok-btn"
+            className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            onClick={onClose}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LoginModal;

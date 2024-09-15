@@ -11,11 +11,11 @@ import slide3 from "../assets/CopperHair.jpg";
 export const LINKS = [
   {
     name: "Sign In",
-    link: "#sign in",
+    link: "#sign-in",
   },
   {
     name: "Book appointment",
-    link: "#book appointment",
+    link: "#appointments",
   },
   {
     name: "Services",

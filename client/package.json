@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.11.8",
     "@headlessui/react": "^2.1.7",
     "@heroicons/react": "^2.1.5",
     "@remixicon/react": "^4.2.0",
+    "apollo-client": "^2.6.10",
     "express": "^4.20.0",
     "mongoose": "^8.6.1",
     "react": "^18.3.1",
