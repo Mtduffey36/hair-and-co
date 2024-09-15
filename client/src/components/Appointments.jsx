@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from 'react';
 
 const Appointments = () => {
     const navigate = useNavigate();
@@ -9,7 +8,7 @@ const Appointments = () => {
     }
 
     const handleSignUpClick = () => {
-        navigate("/SignUp")
+        navigate("/signup")
     }
 
     return (

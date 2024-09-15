@@ -1,41 +1,36 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Services from "./components/Services";
-import Portfolio from "./components/Portfolio";
-import About from "./components/About";
-import Reviews from "./components/Reviews";
-import ContactUs from "./components/ContactUs";
 import Footer from "./components/Footer";
-import OurWork from "./components/OurWork";
-import Appointments from "./components/Appointments";
-import Booking from "./Pages/Booking";
 import Lightbox from "yet-another-react-lightbox";
+import SignUp from "./Pages/SignUp";
+import Booking from "./Pages/Booking";
+import Home from "./components/Home";
 
+const client = new ApolloClient({
+  //For testing copy and paste the URL given when u run your server
+  uri: 'http://localhost:3001/graphql', 
+  cache: new InMemoryCache()
+});
 
 const App = () => {
   return (
-    <Router> 
-    <main className="overflow-x-hidden antialiased text-neutral-800">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<> 
-      <Hero />
-      <Appointments />
-      <Services />
-      <Portfolio />
-      <OurWork />
-      <About />
-      <Reviews />
-      <ContactUs />
-      </>} />
-      <Route path="/booking" element={<Booking />} />
-      </Routes>
-      <Footer />
-      <Lightbox />
-    </main>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <main className="overflow-x-hidden antialiased text-neutral-800">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/booking" element={<Booking />} />
+          </Routes>
+          <Footer />
+          <Lightbox />
+        </main>
+      </Router>
+    </ApolloProvider>
   )
 }
-export default App
+
+export default App;
