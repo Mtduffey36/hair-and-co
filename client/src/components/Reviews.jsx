@@ -12,11 +12,11 @@ const Reviews = () => {
                 </p>
                 <div className="flex flex-wrap justify-center">
                     {REVIEWS.reviews.map((review, index) => (
-                      <div key={index} className="mt-20 flex flex-col items-center justify-center
-                      rounded-2xl border border-neutral-300 p-10 mx-2 max-w-xs">
+                      <div key={index} className="mt-5 flex flex-col items-center justify-center
+                      rounded-2xl border border-neutral-300 p-5 mx-2 max-w-xs text-white bg-rosy-brown">
                           <p className="mb-4">{review.review}</p>
                           <div classname="flex items-center mt-4">
-                              {/* <img src={review.image} alt={review.name} className="w-12 h-12 rounded-full mr-4"/> */}
+                             
                             <div>
                                 <p className="text-sm font-bold">{review.name}</p>
                                 <p className="text-sm text-neutral-500">{review.title}</p>

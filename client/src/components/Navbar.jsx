@@ -19,20 +19,22 @@ const Navbar = () => {
     }
 
     const handleLinkClick = (e, link) => {
+        e.preventDefault();
         if (link.name === "Sign In") {
-            handleSignInClick(e)
-        } else {
-            e.preventDefault()
-            navigate('/' + link.link)
+            handleSignInClick(e);
+        } else if (link.link.startsWith('#')) {
+            navigate('/');
             setTimeout(() => {
-                const element = document.getElementById(link.link.replace('#', ''))
+                const element = document.getElementById(link.link.replace('#', ''));
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' })
+                    element.scrollIntoView({ behavior: 'smooth' });
                 }
-            }, 100)
+            }, 100);
+        } else {
+            navigate(link.link);
         }
         if (isOpen) {
-            setIsOpen(false)
+            setIsOpen(false);
         }
     }
 

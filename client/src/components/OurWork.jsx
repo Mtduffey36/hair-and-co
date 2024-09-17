@@ -3,6 +3,14 @@ import { useNavigate } from "react-router-dom";
 import * as React from 'react'
 import Lightbox from "yet-another-react-lightbox"
 import "yet-another-react-lightbox/styles.css"
+import {
+    Captions,
+    Fullscreen,
+    Thumbnails,
+    Zoom,
+  } from 'yet-another-react-lightbox/plugins';
+  import 'yet-another-react-lightbox/plugins/captions.css';
+  import 'yet-another-react-lightbox/plugins/thumbnails.css';
 
 //photo gallery
 import HairBlowout from "../assets/HairBlowout.jpg"
@@ -24,15 +32,19 @@ const OurWork = () => {
         <>
         <section className="max-w-7xl mx-auto border-b-2 mt-20" id="OurWork">
             <h2 className="text-xl lg:text-3xl tracking-tight text-center uppercase
-            mb-12 mx-4">Our Work</h2>
+            mb-12 mx-4">Take a look at some of our work</h2>
             <div className="flex flex-col items-center lg:space-x-8 mx-4 mb-20">
-                    Enter Photo Gallery Below!!!
+                click any photo to enter into the photo gallery
 
-            <button type="button" onClick={() => setOpen(true)}>
+            <button id="slides" type="button" onClick={() => setOpen(true)}>
                 <img src={HairBlowout} alt="Hair Blowout" className="mt-8 h-96 w-full object-cover"/>
+                <img src={slide1} alt="MeganHairOne" className="mt-8 h-96 w-full object-cover"/>
+                <img src={slide2} alt="HairShots" className="mt-8 h-96 w-full object-cover"/>
+                <img src={slide3} alt="CopperHair" className="mt-8 h-96 w-full object-cover"/>
             </button>
 
             <Lightbox
+            plugins={[Captions, Fullscreen, Zoom, Thumbnails]}
             open={open}
             close={() => setOpen(false)}
             slides={[
@@ -42,12 +54,14 @@ const OurWork = () => {
             ]}
 
             />
-                <p className="text-lg lg:text-2xl font-light text-center lg:text-left max-w-5xl mx-aut0 mt-8">
-                    Book an appointment with one of our Stylist 
+                <p className="text-lg lg:text-2xl font-light text-center lg:text-left max-w-5xl mx-auto mt-8">
+                    Love our work? Book an appointment with one of our Stylist! 
                     
-                    <div className="flex items-center rounded-xl bg-rose-200 p-2
-                        px-6 font-sans font-medium text-black hover:bg-gray-500">
-                    <button onClick={handleBookingClick}> Book Now!</button>
+                    <div className="max-w-xs text-lg text-center mx-auto">
+                    <button className="rounded-xl bg-rosy-brown py-2
+                        px-6 font-Montserrat font-medium text-white hover:bg-gray-500"
+                        onClick={handleBookingClick}> Book Now!</button>
+                    
                     </div>
              
 

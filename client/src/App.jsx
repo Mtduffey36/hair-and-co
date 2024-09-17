@@ -6,7 +6,12 @@ import Footer from "./components/Footer";
 import Lightbox from "yet-another-react-lightbox";
 import SignUp from "./Pages/SignUp";
 import Booking from "./Pages/Booking";
+import About from "./Pages/About";
+import Services from "./Pages/Services";
 import Home from "./components/Home";
+import MeganPortfolio from "./pages/MeganPortfolio"
+import MalloryPortfolio from "./pages/MalloryPortfolio"
+import KaylaPortfolio from "./pages/KaylaPortfolio"
 
 const client = new ApolloClient({
   //For testing copy and paste the URL given when u run your server
@@ -24,6 +29,11 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/booking" element={<Booking />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/meganPortfolio" element={<MeganPortfolio />} />
+            <Route path="/malloryPortfolio" element={<MalloryPortfolio />} />
+            <Route path="/kaylaPortfolio" element={<KaylaPortfolio />} />
           </Routes>
           <Footer />
           <Lightbox />
