@@ -29,14 +29,11 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/booking" element={<Booking />} />
-<<<<<<< HEAD
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-=======
             <Route path="/meganPortfolio" element={<MeganPortfolio />} />
             <Route path="/malloryPortfolio" element={<MalloryPortfolio />} />
             <Route path="/kaylaPortfolio" element={<KaylaPortfolio />} />
->>>>>>> a32f18613ffe7395af748e6c1bec8f24c9e82e52
           </Routes>
           <Footer />
           <Lightbox />
