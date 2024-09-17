@@ -15,11 +15,11 @@ export const LINKS = [
   },
   {
     name: "Book appointment",
-    link: "#appointments",
+    link: "/bookings",
   },
   {
     name: "Services",
-    link: "#services",
+    link: "/services",
   },
   {
     name: "Stylist",
@@ -31,7 +31,7 @@ export const LINKS = [
   },
   {
     name: "About",
-    link: "#about",
+    link: "/about",
   },
   {
     name: "Reviews",
@@ -106,37 +106,31 @@ export const REVIEWS = {
   reviews: [
     {
       name: "Shelley Houston Crenshaw",
-      title: "Hair Review",
       review:
         "LOVE Hair & Company...and Lorin is a fabulous addition to the team!! She cut my hair yesterday and is so great!! Sweet too, I enjoyed simply meeting her!!",
     },
     {
       name: "Karen Gregory",
-      title: "recommends Hair & Company",
       review:
       "Hair and Company is a wonderful place to get you hair cut. Not only are the hairstylists very professional and do an excellent job, but there is such a positive atmosphere filled with love. I always leave happier than when I arrived.",
     },
     {
       name: "Brittany Pantello",
-      title: "Hair Review",
       review:
       "The experience was top notch and my hair looks great",
     },
     {
       name: "Laura Simons Murphy",
-      title: "Client of Megan Pitts Duffey",
       review:
       "Love me some Megan Pitts! Beautiful person inside and out! Great at what she does!",
     },
     {
       name: "Donna Davis",
-      title: "Client of Jennifer",
       review:
       "Love Hair and Company Jennifer does fantastic with color and cut!  I always leave feeling beautiful because of her talent and knowledge of knowing what is best for my hair!",
     },
     {
       name: "Kammy Miller",
-      title: "Client of Holly",
       review:
       "Holly has cut my hair since I was 17 back in 1992!!!! Now she cuts my kids hair too. She is a wonderful godly woman",
     },

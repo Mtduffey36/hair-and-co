@@ -12,3 +12,8 @@
 #logo {
   font-family: "Fraunces", sans-serif;
 }
+
+#slides {
+  display: flex;
+
+}

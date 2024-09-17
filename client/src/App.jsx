@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import Lightbox from "yet-another-react-lightbox";
 import SignUp from "./Pages/SignUp";
 import Booking from "./Pages/Booking";
+import About from "./Pages/About";
+import Services from "./Pages/Services";
 import Home from "./components/Home";
 
 const client = new ApolloClient({
@@ -24,6 +26,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/booking" element={<Booking />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
           </Routes>
           <Footer />
           <Lightbox />
