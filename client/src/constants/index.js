@@ -80,7 +80,7 @@ export const PORTFOLIO_PROJECTS = [
     description:
     "Master colorist",
     image: portfolio1,
-    link: "#",
+    link: "/meganPortfolio",
   },
   {
     id: 2,
@@ -88,7 +88,7 @@ export const PORTFOLIO_PROJECTS = [
     description:
     "Cut and Color Specialist",
     image: portfolio2,
-    link: "#",
+    link: "/malloryPortfolio",
   },
   {
     id: 3,
@@ -96,7 +96,7 @@ export const PORTFOLIO_PROJECTS = [
     description:
       "Extentions Expert",
     image: portfolio3,
-    link: "#",
+    link: "/KaylaPortfolio",
   },
 ];
 

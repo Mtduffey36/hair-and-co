@@ -3,7 +3,7 @@
 const KaylaPortfolio = () => {
     return (
         <>
-            
+            This is Kayla's Portfolio
         </>
     )
 }
