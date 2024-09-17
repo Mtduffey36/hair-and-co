@@ -21,3 +21,5 @@ export default {
   },
   plugins: [],
 }
+
+// #cd8e8e light rose color

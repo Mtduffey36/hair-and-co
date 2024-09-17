@@ -1,4 +1,5 @@
 import { HERO_CONTENT } from "../constants"
+import AdminCal from "../components/AdminCal" 
 
 const Booking = () => {
     return (
