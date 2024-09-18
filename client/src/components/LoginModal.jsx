@@ -32,7 +32,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
-      <div className="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+      <div className="relative top-20 mx-auto p-2 border w-96 shadow-lg rounded-md bg-white ">
         <div className="mt-3 text-center">
           <h3 className="text-lg leading-6 font-medium text-gray-900">Sign In</h3>
           <form className="mt-2 px-7 py-3" onSubmit={handleFormSubmit}>
@@ -54,7 +54,8 @@ const LoginModal = ({ isOpen, onClose }) => {
             />
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-xl bg-rosy-brown py-2
+                        px-6 font-Montserrat font-medium text-white hover:bg-gray-700"
             >
               Sign In
             </button>
@@ -65,10 +66,20 @@ const LoginModal = ({ isOpen, onClose }) => {
             </p>
           )}
         </div>
-        <div className="items-center px-4 py-3">
+        <p id='or'>Don't have an account?</p>
+        <div className="items-center px-7 py-3">
           <button
             id="ok-btn"
-            className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            className="px-4 py-2 bg-rosy-brown text-white text-base font-medium rounded-xl w-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
+            onClick={onClose}
+          >
+            Create Account
+          </button>
+        </div>
+        <div className="items-center px-7 py-3">
+          <button
+            id="ok-btn"
+            className="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-xl w-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
             onClick={onClose}
           >
             Close

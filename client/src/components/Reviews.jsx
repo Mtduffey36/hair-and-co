@@ -15,7 +15,7 @@ const Reviews = () => {
                       <div key={index} className="mt-5 flex flex-col items-center justify-center
                       rounded-2xl border border-neutral-300 p-5 mx-2 max-w-xs text-white bg-rosy-brown">
                           <p className="mb-4">{review.review}</p>
-                          <div classname="flex items-center mt-4">
+                          <div className="flex items-center mt-4">
                              
                             <div>
                                 <p className="text-sm font-bold">{review.name}</p>
