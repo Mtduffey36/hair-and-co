@@ -17,3 +17,8 @@
   display: flex;
 
 }
+
+#service-name {
+  font-size: x-large;
+  font-style: italic;
+}
