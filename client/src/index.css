@@ -18,6 +18,17 @@
 
 }
 
+#signInButton {
+  background-color: rosybrown;
+}
+
+#or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 20px 0;
+}
+=======
 #service-name {
   font-size: x-large;
   font-style: italic;

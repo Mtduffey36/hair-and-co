@@ -58,14 +58,12 @@ const OurWork = () => {
                     Love our work? Book an appointment with one of our Stylist! 
                     
                     <div className="max-w-xs text-lg text-center mx-auto">
+                        <br />
                     <button className="rounded-xl bg-rosy-brown py-2
                         px-6 font-Montserrat font-medium text-white hover:bg-gray-500"
                         onClick={handleBookingClick}> Book Now!</button>
-                    
                     </div>
-             
 
-                   
                 </p>
             </div>
         </section>

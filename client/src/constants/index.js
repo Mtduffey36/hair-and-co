@@ -10,8 +10,8 @@ import slide3 from "../assets/CopperHair.jpg";
 
 export const LINKS = [
   {
-    name: "Sign In",
-    link: "#sign-in",
+    name: "Home",
+    link: "/",
   },
   {
     name: "Book appointment",
@@ -40,6 +40,10 @@ export const LINKS = [
   {
     name: "Contact",
     link: "#contact",
+  },
+  {
+    name: "Sign In",
+    link: "#sign-in",
   },
 ];
 export const SLIDES_CONTENT = [
