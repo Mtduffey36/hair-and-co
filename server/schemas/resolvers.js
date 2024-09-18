@@ -1,8 +1,8 @@
 const { User, Service, Stylist, Appointment, Review } = require('../models');
 const { AuthenticationError, signToken } = require('../utils/auth');
 
-
 const resolvers = {
+  
   Query: {
     users: async () => {
       return User.find();
@@ -22,11 +22,28 @@ const resolvers = {
     stylist: async (parent, { stylistId }) => {
       return Stylist.findById(stylistId).populate('userId');
     },
+    stylistAppointments: async (_, { stylistId, date }) => {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        throw new Error('Invalid date format. Use YYYY-MM-DD');
+      }
+      return Appointment.find({
+        stylistId,
+        date: date 
+      }).populate({
+        path: 'serviceId',
+        select: '_id name duration'
+      }).then(appointments => {
+        return appointments.map(appointment => ({
+          ...appointment._doc,
+          service: appointment.serviceId
+        }));
+      });
+    },
     appointments: async () => {
-      return Appointment.find().populate('customerId stylistId serviceId');
+      return Appointment.find().populate('stylistId serviceId');
     },
     appointment: async (parent, { appointmentId }) => {
-      return Appointment.findById(appointmentId).populate('customerId stylistId serviceId');
+      return Appointment.findById(appointmentId).populate('stylistId serviceId');
     },
     reviews: async () => {
       return Review.find().populate('customerId stylistId appointmentId');
@@ -75,8 +92,19 @@ const resolvers = {
     addStylist: async (parent, { userId, specialties, experience }) => {
       return Stylist.create({ userId, specialties, experience });
     },
-    addAppointment: async (parent, { customerId, stylistId, serviceId, date, time, notes }) => {
-      return Appointment.create({ customerId, stylistId, serviceId, date, time, notes });
+    addAppointment: async (parent, { firstName, lastName, email, phoneNumber, stylistId, serviceId, date, time, notes }) => {
+      const newAppointment = await Appointment.create({ 
+        firstName, 
+        lastName, 
+        email, 
+        phoneNumber, 
+        stylistId, 
+        serviceId, 
+        date, 
+        time, 
+        notes 
+      });
+      return newAppointment;
     },
     updateAppointmentStatus: async (parent, { appointmentId, status }) => {
       return Appointment.findByIdAndUpdate(appointmentId, { status }, { new: true });
@@ -98,7 +126,6 @@ const resolvers = {
   },
   Appointment: {
     _id: (parent) => parent._id.toString(),
-    customer: async (parent) => await User.findById(parent.customerId),
     stylist: async (parent) => await Stylist.findById(parent.stylistId),
     service: async (parent) => await Service.findById(parent.serviceId),
   },

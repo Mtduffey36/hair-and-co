@@ -15,7 +15,7 @@ export const LINKS = [
   },
   {
     name: "Book appointment",
-    link: "/bookings",
+    link: "/booking",
   },
   {
     name: "Services",
@@ -82,25 +82,25 @@ export const PORTFOLIO_PROJECTS = [
     id: 1,
     name: "Megan",
     description:
-    "Master colorist",
+    "Click to view profile",
     image: portfolio1,
-    link: "/meganPortfolio",
+    link: "/megan",
   },
   {
     id: 2,
     name: "Mallory",
     description:
-    "Cut and Color Specialist",
+    "Click to view profile",
     image: portfolio2,
-    link: "/malloryPortfolio",
+    link: "/mallory",
   },
   {
     id: 3,
     name: "Kayla",
     description:
-      "Extentions Expert",
+      "Click to view profile",
     image: portfolio3,
-    link: "/KaylaPortfolio",
+    link: "/kayla",
   },
 ];
 
@@ -153,7 +153,7 @@ export const CONTACT_INFO = {
     value: "info@hairandco.com",
   },
   address: {
-    label: "address",
+    label: "Address",
     value: "5647 Highway 80 E, Pearl, MS, United States, Mississippi",
   },
 };

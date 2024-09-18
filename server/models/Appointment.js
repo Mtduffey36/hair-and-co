@@ -1,10 +1,26 @@
 const { Schema, model } = require('mongoose');
 
 const appointmentSchema = new Schema({
-  customerId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+  firstName: {
+    type: String,
     required: true,
+    trim: true
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    required: true,
+    trim: true,
+    lowercase: true
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    trim: true
   },
   stylistId: {
     type: Schema.Types.ObjectId,
@@ -14,10 +30,10 @@ const appointmentSchema = new Schema({
   serviceId: {
     type: Schema.Types.ObjectId,
     ref: 'Service',
-    required: true,
+
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
   },
   time: {
