@@ -1,4 +1,4 @@
-import AdminCal from "../components/AdminCal" 
+// import AdminCal from "../components/AdminCal" 
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
 import { GET_SERVICES, GET_STYLISTS, ADD_APPOINTMENT, GET_STYLIST_APPOINTMENTS } from '../utils/mutations';
