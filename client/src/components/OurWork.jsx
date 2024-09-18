@@ -33,14 +33,14 @@ const OurWork = () => {
         <section className="max-w-7xl mx-auto border-b-2 mt-20" id="OurWork">
             <h2 className="text-xl lg:text-3xl tracking-tight text-center uppercase
             mb-12 mx-4">Take a look at some of our work</h2>
-            <div className="flex flex-col items-center lg:space-x-8 mx-4 mb-20">
-                click any photo to enter into the photo gallery
+            <div className="flex flex-col items-center lg:space-x-8 mx-4 mb-20 ">
+                Click any photo to enter into the photo gallery
 
-            <button id="slides" type="button" onClick={() => setOpen(true)}>
-                <img src={HairBlowout} alt="Hair Blowout" className="mt-8 h-96 w-full object-cover"/>
-                <img src={slide1} alt="MeganHairOne" className="mt-8 h-96 w-full object-cover"/>
-                <img src={slide2} alt="HairShots" className="mt-8 h-96 w-full object-cover"/>
-                <img src={slide3} alt="CopperHair" className="mt-8 h-96 w-full object-cover"/>
+            <button id="slides" type="button" onClick={() => setOpen(true)} className="w-full">
+            <img src={HairBlowout} alt="Hair Blowout" className="mt-8 w-full h-auto object-cover lg:h-96"/>
+            <img src={slide1} alt="MeganHairOne" className="mt-8 w-full h-auto object-cover lg:h-96"/>
+            <img src={slide2} alt="HairShots" className="mt-8 w-full h-auto object-cover lg:h-96"/>
+            <img src={slide3} alt="CopperHair" className="mt-8 w-full h-auto object-cover lg:h-96"/>
             </button>
 
             <Lightbox

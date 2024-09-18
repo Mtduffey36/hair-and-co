@@ -16,8 +16,10 @@ import KaylaPortfolio from "./pages/KaylaPortfolio"
 const client = new ApolloClient({
   //For testing copy and paste the URL given when u run your server
   uri: 'http://localhost:3001/graphql', 
+  credentials: 'include',
   cache: new InMemoryCache()
 });
+
 
 const App = () => {
   return (
@@ -31,9 +33,9 @@ const App = () => {
             <Route path="/booking" element={<Booking />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/meganPortfolio" element={<MeganPortfolio />} />
-            <Route path="/malloryPortfolio" element={<MalloryPortfolio />} />
-            <Route path="/kaylaPortfolio" element={<KaylaPortfolio />} />
+            <Route path="/megan" element={<MeganPortfolio />} />
+            <Route path="/mallory" element={<MalloryPortfolio />} />
+            <Route path="/kayla" element={<KaylaPortfolio />} />
           </Routes>
           <Footer />
           <Lightbox />

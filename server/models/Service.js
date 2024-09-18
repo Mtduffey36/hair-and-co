@@ -18,7 +18,7 @@ const serviceSchema = new Schema({
   duration: {
     type: Number,
     required: true,
-    min: 1,
+    min: 30,
   },
 });
 

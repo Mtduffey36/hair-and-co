@@ -2,18 +2,32 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3001', 'https://studio.apollographql.com'],
+  credentials: true
+})); 
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req }) => ({ req }),
+  playground: true,
+  introspection: true
 });
 
 const startApolloServer = async () => {
   await server.start();
-  server.applyMiddleware({ app });
+  
+  server.applyMiddleware({ 
+    app,
+    path: '/graphql',
+    cors: false 
+  });
 
   db.once('open', () => {
     app.listen(PORT, () => {

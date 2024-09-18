@@ -29,7 +29,10 @@ const typeDefs = gql`
 
   type Appointment {
     _id: ID
-    customer: User
+    firstName: String
+    lastName: String
+    email: String
+    phoneNumber: String
     stylist: Stylist
     service: Service
     date: String
@@ -60,11 +63,14 @@ const typeDefs = gql`
     service(serviceId: ID!): Service
     stylists: [Stylist]
     stylist(stylistId: ID!): Stylist
+    stylistAppointments(stylistId: ID!, date: String!): [Appointment]
     appointments: [Appointment]
     appointment(appointmentId: ID!): Appointment
     reviews: [Review]
     review(reviewId: ID!): Review
   }
+
+ 
 
   type Mutation {
     addUser(name: String!, lastName: String!, email: String!, password: String!, phoneNumber: String, role: Int): Auth
@@ -73,7 +79,7 @@ const typeDefs = gql`
     updateService(serviceId: ID!, name: String, description: String, price: Float, duration: Int): Service
     deleteService(serviceId: ID!): Service
     addStylist(userId: ID!, specialties: [String], experience: String): Stylist
-    addAppointment(customerId: ID!, stylistId: ID!, serviceId: ID!, date: String!, time: String!, notes: String): Appointment
+    addAppointment(firstName: String!, lastName: String!, email: String!, phoneNumber: String!, stylistId: ID!, serviceId: ID!, date: String!, time: String!, notes: String): Appointment
     updateAppointmentStatus(appointmentId: ID!, status: String!): Appointment
     addReview(customerId: ID!, stylistId: ID!, appointmentId: ID!, calification: Int!, comment: String): Review
   }
