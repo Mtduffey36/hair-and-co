@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'; 
+import SignUp from '../Pages/SignUp';
+import { useNavigate } from 'react-router-dom';
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -27,6 +29,8 @@ const LoginModal = ({ isOpen, onClose }) => {
       console.error(e);
     }
   };
+
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
@@ -71,7 +75,9 @@ const LoginModal = ({ isOpen, onClose }) => {
           <button
             id="ok-btn"
             className="px-4 py-2 bg-rosy-brown text-white text-base font-medium rounded-xl w-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
-            onClick={onClose}
+            onClick={() => { 
+              onClose();
+              navigate('/signup')}}
           >
             Create Account
           </button>
