@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Lightbox from "yet-another-react-lightbox";
-import Signup from "./Pages/SignUp";
+import Signup from "./Pages/Signup";
 import Booking from "./Pages/Booking";
 import About from "./Pages/About";
 import Services from "./Pages/Services";
