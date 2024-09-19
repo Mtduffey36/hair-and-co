@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Lightbox from "yet-another-react-lightbox";
-import Signup from "./Pages/Signup";
+import SignUp from "./Pages/SignUp";
 import Booking from "./Pages/Booking";
 import About from "./Pages/About";
 import Services from "./Pages/Services";
@@ -31,7 +31,7 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<Signup />} />
+            <Route path="/signUp" element={<SignUp />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
