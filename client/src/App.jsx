@@ -9,7 +9,7 @@ import Booking from "./Pages/Booking";
 import About from "./Pages/About";
 import Services from "./Pages/Services";
 import Home from "./components/Home";
-import MeganPortfolio from "./pages/MeganPortfolio";
+import MeganPortfolio from "./Pages/MeganPortfolio";
 import MalloryPortfolio from "./pages/MalloryPortfolio";
 import KaylaPortfolio from "./pages/KaylaPortfolio";
 import AdminHome from "./Pages/AdminHome"
