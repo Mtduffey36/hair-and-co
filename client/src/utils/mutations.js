@@ -115,3 +115,24 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+// Add Service 
+
+export const ADD_SERVICE = gql`
+ mutation AddService($name: String!, $description: String!, $price: Float!, $duration: Int!) {
+    addService(name: $name, description: $description, price: $price, duration: $duration) {
+      name
+      price
+      duration
+      description
+    }
+  }
+`;
+
+export const DELETE_SERVICE = gql`
+  mutation DeleteService($serviceId: ID!) {
+    deleteService(serviceId: $serviceId) {
+      _id
+    }
+  }
+`;
