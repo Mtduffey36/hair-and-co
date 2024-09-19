@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MeganPortfolio = () => {
+  const navigate = useNavigate();
+    
+  const handleBookingClick = () => {
+      navigate("/booking")
+  }
+
   return (
     <>
       <div id="about" className="relative bg-white overflow-hidden">
@@ -23,21 +30,17 @@ const MeganPortfolio = () => {
                 <h2 className="my-6 text-2xl tracking-tight font-extrabold text-gray-900 sm:text-3xl md:text-4xl">
                   About Megan
                 </h2>
-
                 <p>
-                  Donec porttitor, enim ut dapibus lobortis, lectus sem
-                  tincidunt dui, eget ornare lectus ex non libero. Nam rhoncus
-                  diam ultrices porttitor laoreet. Ut mollis fermentum ex, vel
-                  viverra lorem volutpat sodales. In ornare porttitor odio sit
-                  amet laoreet. Sed laoreet, nulla a posuere ultrices, purus
-                  nulla tristique turpis, hendrerit rutrum augue quam ut est.
-                  Fusce malesuada posuere libero, vitae dapibus eros facilisis
-                  euismod. Sed sed lobortis justo, ut tincidunt velit. Mauris in
-                  maximus eros.
+                With a decade of experience in the beauty industry, Megan has established a 
+                reputation as a master hairstylist specializing in vibrant 
+                hi-colors and luxurious Brazilian blowouts. 
+                Known for their keen eye for detail and passion for creativity, 
+                Megan transforms hair into stunning works of art that reflect each 
+                client's unique personality.
                 </p>
                 <div className="max-w-xs text-lg text-center mx-auto">
                   <br />
-                  <button
+                  <button onClick={handleBookingClick}
                     className="rounded-xl bg-rosy-brown py-2 mt-3
                         px-14 font-Montserrat font-medium text-white hover:bg-gray-500"
                   >
@@ -51,9 +54,8 @@ const MeganPortfolio = () => {
         </div>
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <img
-            className="h-56 w-full object-cover object-top sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="src\assets\Stylist1.jpg"
-            alt=""
+            className="h-56 w-full object-cover object- sm:h-72 md:h-96 lg:w-full lg:h-full"
+            src="src\assets\Stylist1.jpg" alt="Stylist1"
           />
         </div>
       </div>

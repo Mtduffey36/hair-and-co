@@ -1,6 +1,12 @@
-// import { } from " "
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const MalloryPortfolio = () => {
+  const navigate = useNavigate();
+    
+  const handleBookingClick = () => {
+      navigate("/booking")
+  }
   return (
     <>
       <div id="about" className="relative bg-white overflow-hidden">
@@ -25,19 +31,17 @@ const MalloryPortfolio = () => {
                 </h2>
 
                 <p>
-                  Donec porttitor, enim ut dapibus lobortis, lectus sem
-                  tincidunt dui, eget ornare lectus ex non libero. Nam rhoncus
-                  diam ultrices porttitor laoreet. Ut mollis fermentum ex, vel
-                  viverra lorem volutpat sodales. In ornare porttitor odio sit
-                  amet laoreet. Sed laoreet, nulla a posuere ultrices, purus
-                  nulla tristique turpis, hendrerit rutrum augue quam ut est.
-                  Fusce malesuada posuere libero, vitae dapibus eros facilisis
-                  euismod. Sed sed lobortis justo, ut tincidunt velit. Mauris in
-                  maximus eros.
+                She specializes in a wide range of haircutting techniques, 
+                from classic bobs to edgy pixie cuts and everything in between. 
+                With a keen eye for shape and proportion, She tailors each cut to suit the client's 
+                face shape, hair texture, and personal style. 
+                Whether you're looking for a dramatic change or a subtle refresh, 
+                Mallory ensures that every haircut is executed with precision and artistry.
+                  
                 </p>
                 <div className="max-w-xs text-lg text-center mx-auto">
                   <br />
-                  <button
+                  <button onClick={handleBookingClick}
                     className="rounded-xl bg-rosy-brown py-2 mt-3
                         px-14 font-Montserrat font-medium text-white hover:bg-gray-500"
                   >
@@ -51,9 +55,8 @@ const MalloryPortfolio = () => {
         </div>
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <img
-            className="h-56 w-full object-cover object-top sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="src\assets\Stylist2.jpg"
-            alt=""
+            className="h-56 w-full object-cover object- sm:h-72 md:h-96 lg:w-full lg:h-full"
+            src="src\assets\Stylist2.jpg" alt="Stylist2"
           />
         </div>
       </div>
