@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations'; 
 
-const SignUp = () => {
+const Signup = () => {
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -139,7 +139,7 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Signup;
 
 
 
