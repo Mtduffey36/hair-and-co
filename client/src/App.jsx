@@ -35,11 +35,11 @@ const App = () => {
             <Route path="/booking" element={<Booking />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/megan" element={<MeganPortfolio />} />
-            <Route path="/mallory" element={<MalloryPortfolio />} />
-            <Route path="/kayla" element={<KaylaPortfolio />} />
-            <Route path="/admin" element={<AdminHome />} />
-            <Route path="/create-service" element={<AdminServices />} />
+            <Route path="/meganPortfolio" element={<MeganPortfolio />} />
+            <Route path="/malloryPortfolio" element={<MalloryPortfolio />} />
+            <Route path="/kaylaPortfolio" element={<KaylaPortfolio />} />
+            <Route path="/adminHome" element={<AdminHome />} />
+            <Route path="/AdminServices" element={<AdminServices />} />
           </Routes>
           <Footer />
           <Lightbox />
