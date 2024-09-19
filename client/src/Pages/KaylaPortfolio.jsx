@@ -1,6 +1,12 @@
-// import { } from " "
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const KaylaPortfolio = () => {
+  const navigate = useNavigate();
+    
+  const handleBookingClick = () => {
+      navigate("/booking")
+  }
   return (
     <>
       <div id="about" className="relative bg-white overflow-hidden">
@@ -25,19 +31,14 @@ const KaylaPortfolio = () => {
                 </h2>
 
                 <p>
-                  Donec porttitor, enim ut dapibus lobortis, lectus sem
-                  tincidunt dui, eget ornare lectus ex non libero. Nam rhoncus
-                  diam ultrices porttitor laoreet. Ut mollis fermentum ex, vel
-                  viverra lorem volutpat sodales. In ornare porttitor odio sit
-                  amet laoreet. Sed laoreet, nulla a posuere ultrices, purus
-                  nulla tristique turpis, hendrerit rutrum augue quam ut est.
-                  Fusce malesuada posuere libero, vitae dapibus eros facilisis
-                  euismod. Sed sed lobortis justo, ut tincidunt velit. Mauris in
-                  maximus eros.
+                She is dedicated to pushing the boundaries of color, expertly blending shades to 
+                create eye-catching, multidimensional looks. Whether you're seeking a bold new hue 
+                or a subtle balayage, she uses high-quality products and innovative techniques to 
+                ensure your color lasts while maintaining the health of your hair.
                 </p>
                 <div className="max-w-xs text-lg text-center mx-auto">
                   <br />
-                  <button
+                  <button onClick={handleBookingClick}
                     className="rounded-xl bg-rosy-brown py-2 mt-3
                         px-14 font-Montserrat font-medium text-white hover:bg-gray-500"
                   >
@@ -52,8 +53,7 @@ const KaylaPortfolio = () => {
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <img
             className="h-56 w-full object-cover object-top sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="src\assets\Stylist3.jpg"
-            alt=""
+            src="src\assets\Stylist3.jpg" alt="Stylist3"
           />
         </div>
       </div>
