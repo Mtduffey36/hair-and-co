@@ -101,3 +101,17 @@ query StylistAppointments($stylistId: ID!, $date: String!) {
   }
 }
 `;
+//Get users
+export const GET_USERS = gql`
+  query GetUsers {
+    users {
+     _id
+    createdAt
+    email
+    lastName
+    name
+    phoneNumber
+    role
+    }
+  }
+`;
