@@ -1,23 +1,27 @@
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { RiCloseLine, RiMenu3Line } from "@remixicon/react"
-import { LINKS } from "../constants"
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { RiCloseLine, RiMenu3Line, RiArrowUpLine } from "@remixicon/react";
+import { LINKS } from "../constants";
 import LoginModal from './LoginModal';
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
-    const navigate = useNavigate()
+    const [isOpen, setIsOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [showScrollUpButton, setShowScrollUpButton] = useState(false);
+    const navigate = useNavigate();
 
+    // Toggle the menu
     const toggleMenu = () => {
-        setIsOpen(!isOpen)
-    }
+        setIsOpen(!isOpen);
+    };
 
+    // Handle sign-in click
     const handleSignInClick = (e) => {
-        e.preventDefault()
-        setIsLoginModalOpen(true)
-    }
+        e.preventDefault();
+        setIsLoginModalOpen(true);
+    };
 
+    // Handle link click
     const handleLinkClick = (e, link) => {
         e.preventDefault();
         if (link.name === "Sign In") {
@@ -36,10 +40,34 @@ const Navbar = () => {
         if (isOpen) {
             setIsOpen(false);
         }
-    }
+    };
+
+    // Scroll to top function
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+
+    // Show scroll up button when the user scrolls down
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 200) {
+                setShowScrollUpButton(true);
+            } else {
+                setShowScrollUpButton(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     return (
-        <nav className="border-b-2">
+        <nav className="border-b-2 relative">
             <div className="max-w-7xl mx-auto flex justify-between items-center py-8">
                 <div className="pl-2">
                     {/* <Link to="/">
@@ -48,8 +76,10 @@ const Navbar = () => {
                 </div>
 
                 <div className="md:hidden">
-                    <button onClick={toggleMenu} className="text-2xl pr-2 focus:outline-none"
-                    aria-label={isOpen ? "Close menu" : "Open menu"}>
+                    <button 
+                        onClick={toggleMenu} 
+                        className="text-2xl pr-2 focus:outline-none"
+                        aria-label={isOpen ? "Close menu" : "Open menu"}>
                         {isOpen ? <RiCloseLine /> : <RiMenu3Line />}
                     </button>
                 </div>
@@ -85,8 +115,19 @@ const Navbar = () => {
                 isOpen={isLoginModalOpen} 
                 onClose={() => setIsLoginModalOpen(false)} 
             />
-        </nav>
-    )
-}
 
-export default Navbar
+            {/* Scroll to Top Button */}
+            {showScrollUpButton && (
+                <button 
+                    className="fixed bottom-8 left-4 p-3 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-800 transition duration-300"
+                    onClick={scrollToTop}
+                    aria-label="Scroll to top"
+                >
+                    <RiArrowUpLine size={24} />
+                </button>
+            )}
+        </nav>
+    );
+};
+
+export default Navbar;
