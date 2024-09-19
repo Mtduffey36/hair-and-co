@@ -10,8 +10,8 @@ import About from "./Pages/About";
 import Services from "./Pages/Services";
 import Home from "./components/Home";
 import MeganPortfolio from "./Pages/MeganPortfolio";
-import MalloryPortfolio from "./pages/MalloryPortfolio";
-import KaylaPortfolio from "./pages/KaylaPortfolio";
+import MalloryPortfolio from "./Pages/MalloryPortfolio";
+import KaylaPortfolio from "./Pages/KaylaPortfolio";
 import AdminHome from "./Pages/AdminHome"
 import AdminServices from "./Pages/AdminServices";
 
