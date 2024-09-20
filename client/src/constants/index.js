@@ -84,7 +84,7 @@ export const PORTFOLIO_PROJECTS = [
     description:
     "Click to view profile",
     image: portfolio1,
-    link: "/megan",
+    link: "/meganPortfolio",
   },
   {
     id: 2,
@@ -92,7 +92,7 @@ export const PORTFOLIO_PROJECTS = [
     description:
     "Click to view profile",
     image: portfolio2,
-    link: "/mallory",
+    link: "/malloryPortfolio",
   },
   {
     id: 3,
@@ -100,7 +100,7 @@ export const PORTFOLIO_PROJECTS = [
     description:
       "Click to view profile",
     image: portfolio3,
-    link: "/kayla",
+    link: "/kaylaPortfolio",
   },
 ];
 
