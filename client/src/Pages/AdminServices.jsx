@@ -32,7 +32,10 @@ const AdminServices = () => {
         });
         if (data.addService) {
           console.log('Service added successfully:', data.addService);
-          navigate('/admin');
+          navigate('/adminHome');
+          setTimeout(() => {
+            window.location.reload();
+          }, 100);
         }
       } catch (error) {
         console.error('Error adding service:', error);

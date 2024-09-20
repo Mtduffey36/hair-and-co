@@ -26,14 +26,35 @@ export const LOGIN_USER = gql`
         _id
         name
         email
+        role
       }
     }
   }
 `;
-//Add appointment mutation
+//Add appointment 
 export const ADD_APPOINTMENT = gql`
-  mutation AddAppointment($firstName: String!, $lastName: String!, $email: String!, $phoneNumber: String!, $stylistId: ID!, $serviceId: ID!, $date: String!, $time: String!, $notes: String) {
-    addAppointment(firstName: $firstName, lastName: $lastName, email: $email, phoneNumber: $phoneNumber, stylistId: $stylistId, serviceId: $serviceId, date: $date, time: $time, notes: $notes) {
+  mutation AddAppointment(
+    $firstName: String!, 
+    $lastName: String!, 
+    $email: String!, 
+    $phoneNumber: String!, 
+    $stylistId: ID!, 
+    $serviceId: ID!, 
+    $date: String!, 
+    $time: String!, 
+    $notes: String
+  ) {
+    addAppointment(
+      firstName: $firstName, 
+      lastName: $lastName, 
+      email: $email, 
+      phoneNumber: $phoneNumber, 
+      stylistId: $stylistId, 
+      serviceId: $serviceId, 
+      date: $date, 
+      time: $time, 
+      notes: $notes
+    ) {
       _id
       firstName
       lastName
@@ -41,9 +62,8 @@ export const ADD_APPOINTMENT = gql`
       phoneNumber
       stylist {
         _id
-        user {
-          name
-        }
+        name
+        lastName
       }
       service {
         _id
@@ -56,68 +76,7 @@ export const ADD_APPOINTMENT = gql`
   }
 `;
 
-
-// Get Services query
-export const GET_SERVICES = gql`
-  query getServices {
-    services {
-      _id
-      name
-      description
-      price
-      duration
-    }
-  }
-`;
-
-// Get Stylists query
-export const GET_STYLISTS = gql`
-  query getStylists {
-    stylists {
-      _id
-      user {
-        _id
-        name
-        lastName
-      }
-      specialties
-      experience
-      rating
-    }
-  }
-`;
-//Get stylist appointments
-export const GET_STYLIST_APPOINTMENTS = gql`
-query StylistAppointments($stylistId: ID!, $date: String!) {
-  stylistAppointments(stylistId: $stylistId, date: $date) {
-    _id
-    date
-    time
-    service {
-      _id
-      name
-      duration
-    }
-  }
-}
-`;
-//Get users
-export const GET_USERS = gql`
-  query GetUsers {
-    users {
-     _id
-    createdAt
-    email
-    lastName
-    name
-    phoneNumber
-    role
-    }
-  }
-`;
-
 // Add Service 
-
 export const ADD_SERVICE = gql`
  mutation AddService($name: String!, $description: String!, $price: Float!, $duration: Int!) {
     addService(name: $name, description: $description, price: $price, duration: $duration) {
@@ -129,6 +88,20 @@ export const ADD_SERVICE = gql`
   }
 `;
 
+//Add Stylist
+export const ADD_STYLIST = gql`
+mutation AddStylist($name: String!, $lastName: String!, $email: String!, $phoneNumber: String!) {
+  addStylist(name: $name, lastName: $lastName, email: $email, phoneNumber: $phoneNumber) {
+    name
+    lastName
+    email
+    phoneNumber
+  }
+}
+`;
+
+
+// Delete Service 
 export const DELETE_SERVICE = gql`
   mutation DeleteService($serviceId: ID!) {
     deleteService(serviceId: $serviceId) {
@@ -136,3 +109,14 @@ export const DELETE_SERVICE = gql`
     }
   }
 `;
+
+
+//Delete Stylist
+export const DELETE_STYLIST = gql`
+mutation DeleteStylist($stylistId: ID!) {
+  deleteStylist(stylistId: $stylistId) {
+    _id
+  }
+}
+`
+

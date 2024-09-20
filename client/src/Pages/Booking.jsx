@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client';
-import { GET_SERVICES, GET_STYLISTS, ADD_APPOINTMENT, GET_STYLIST_APPOINTMENTS } from '../utils/mutations';
+import { GET_SERVICES, GET_STYLISTS, GET_STYLIST_APPOINTMENTS } from '../utils/querys';
+import {ADD_APPOINTMENT} from '../utils/mutations'
 
 const Booking = () => {
     const [getStylistAppointments, { loading: loadingAppointments, data: appointmentsData }] = useLazyQuery(GET_STYLIST_APPOINTMENTS);
@@ -85,7 +86,7 @@ const Booking = () => {
 
             if (available.length === 0) {
                 const stylist = stylistsData.stylists.find(s => s._id === stylistId);
-                setErrorMessage(`${stylist.user.name} doesn't have spots available for this date. Please select another stylist or day.`);
+                setErrorMessage(`${stylist.name} doesn't have spots available for this date. Please select another stylist or day.`);
             } else {
                 setErrorMessage('');
             }
@@ -327,7 +328,7 @@ const Booking = () => {
                             <option value="">Select a stylist</option>
                             {stylistsData.stylists.map(stylist => (
                                 <option key={stylist._id} value={stylist._id}>
-                                    {stylist.user.name} {stylist.user.lastName}
+                                    {stylist.name} {stylist.lastName}
                                 </option>
                             ))}
                         </select>

@@ -21,9 +21,14 @@ const typeDefs = gql`
 
   type Stylist {
     _id: ID
-    user: User
+    name: String
+    lastName: String
+    email: String
+    phoneNumber: String
+    role: Int
+    createdAt: String
     specialties: [String]
-    experience: String
+    bio: String
     rating: Float
   }
 
@@ -70,15 +75,15 @@ const typeDefs = gql`
     review(reviewId: ID!): Review
   }
 
- 
-
   type Mutation {
     addUser(name: String!, lastName: String!, email: String!, password: String!, phoneNumber: String, role: Int): Auth
     login(email: String!, password: String!): Auth
     addService(name: String!, description: String!, price: Float!, duration: Int!): Service
     updateService(serviceId: ID!, name: String, description: String, price: Float, duration: Int): Service
     deleteService(serviceId: ID!): Service
-    addStylist(userId: ID!, specialties: [String], experience: String): Stylist
+    addStylist(name: String!, lastName: String!, email: String!, phoneNumber: String!, specialties: [String], experience: String): Stylist
+    updateStylist(stylistId: ID!, name: String, lastName: String, email: String, phoneNumber: String, specialties: [String], experience: String, password: String): Stylist
+    deleteStylist(stylistId: ID!): Stylist
     addAppointment(firstName: String!, lastName: String!, email: String!, phoneNumber: String!, stylistId: ID!, serviceId: ID!, date: String!, time: String!, notes: String): Appointment
     updateAppointmentStatus(appointmentId: ID!, status: String!): Appointment
     addReview(customerId: ID!, stylistId: ID!, appointmentId: ID!, calification: Int!, comment: String): Review
