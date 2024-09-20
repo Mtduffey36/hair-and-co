@@ -36,7 +36,6 @@ const authLink = setContext((_,{headers})=>{
 
 
 const client = new ApolloClient({
-  //For testing copy and paste the URL given when u run your server
   link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 });
@@ -59,7 +58,7 @@ const App = () => {
             <Route path="/meganPortfolio" element={<MeganPortfolio />} />
             <Route path="/malloryPortfolio" element={<MalloryPortfolio />} />
             <Route path="/kaylaPortfolio" element={<KaylaPortfolio />} />
-            
+
             <Route 
               path="/userDashboard" 
               element={
