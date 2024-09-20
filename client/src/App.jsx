@@ -59,7 +59,7 @@ const App = () => {
             <Route path="/meganPortfolio" element={<MeganPortfolio />} />
             <Route path="/malloryPortfolio" element={<MalloryPortfolio />} />
             <Route path="/kaylaPortfolio" element={<KaylaPortfolio />} />
-
+            
             <Route 
               path="/userDashboard" 
               element={
@@ -80,7 +80,7 @@ const App = () => {
                   : <Home />
               } 
             />
-            
+
 {/* Protected Admin Routes */}
 
             <Route 
