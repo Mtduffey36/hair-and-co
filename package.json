@@ -19,5 +19,8 @@
     "concurrently": "^5.1.0",
     "postcss": "^8.4.45",
     "tailwindcss": "^3.4.11"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
   }
 }

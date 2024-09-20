@@ -9,9 +9,9 @@ import Booking from "./Pages/Booking";
 import About from "./Pages/About";
 import Services from "./Pages/Services";
 import Home from "./components/Home";
-import MeganPortfolio from "./pages/MeganPortfolio";
-import MalloryPortfolio from "./pages/MalloryPortfolio";
-import KaylaPortfolio from "./pages/KaylaPortfolio";
+import MeganPortfolio from "./Pages/MeganPortfolio";
+import MalloryPortfolio from "./Pages/MalloryPortfolio";
+import KaylaPortfolio from "./Pages/KaylaPortfolio";
 import AdminHome from "./Pages/AdminHome"
 import AdminServices from "./Pages/AdminServices";
 
@@ -31,15 +31,15 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signUp" element={<SignUp />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/megan" element={<MeganPortfolio />} />
-            <Route path="/mallory" element={<MalloryPortfolio />} />
-            <Route path="/kayla" element={<KaylaPortfolio />} />
-            <Route path="/admin" element={<AdminHome />} />
-            <Route path="/create-service" element={<AdminServices />} />
+            <Route path="/meganPortfolio" element={<MeganPortfolio />} />
+            <Route path="/malloryPortfolio" element={<MalloryPortfolio />} />
+            <Route path="/kaylaPortfolio" element={<KaylaPortfolio />} />
+            <Route path="/adminHome" element={<AdminHome />} />
+            <Route path="/AdminServices" element={<AdminServices />} />
           </Routes>
           <Footer />
           <Lightbox />

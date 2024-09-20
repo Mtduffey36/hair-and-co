@@ -106,6 +106,7 @@ const SignUp = () => {
               onChange={handleChange}
             />
           </div>
+          <div></div>
           <div>
             <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">
               Phone Number

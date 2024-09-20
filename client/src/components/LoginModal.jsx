@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'; 
-import SignUp from '../Pages/SignUp';
 import { useNavigate } from 'react-router-dom';
 
 const LoginModal = ({ isOpen, onClose }) => {
@@ -34,10 +33,21 @@ const LoginModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
+  const handleClickOutside = (event) => {
+    // Check if the user clicked outside the modal content
+    if (event.target.id === 'modal-background') {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="my-modal">
-      <div className="relative top-20 mx-auto p-2 border w-96 shadow-lg rounded-md bg-white ">
-        <div className="mt-3 text-center">
+    <div 
+      id="modal-background" 
+      className="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center" 
+      onClick={handleClickOutside}
+    >
+      <div className="relative p-6 border w-96 shadow-lg rounded-md bg-white" onClick={(e) => e.stopPropagation()}>
+        <div className="text-center">
           <h3 className="text-lg leading-6 font-medium text-gray-900">Sign In</h3>
           <form className="mt-2 px-7 py-3" onSubmit={handleFormSubmit}>
             <input
