@@ -3,12 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { RiCloseLine, RiMenu3Line, RiArrowUpLine } from "@remixicon/react";
 import { LINKS } from "../constants";
 import LoginModal from './LoginModal';
+import { useAuth } from '../utils/auth';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [showScrollUpButton, setShowScrollUpButton] = useState(false);
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
+    const { user, logout } = useAuth();
     const navigate = useNavigate();
 
     // Toggle the menu
@@ -27,6 +29,9 @@ const Navbar = () => {
         e.preventDefault();
         if (link.name === "Sign In") {
             handleSignInClick(e);
+        } else if (link.name === "Sign Out") {
+            logout();
+            navigate('/');
         } else if (link.link.startsWith('#')) {
             navigate('/');
             setTimeout(() => {
@@ -95,29 +100,44 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden md:flex space-x-8 md:space-x-4 pr-2">
-                    {LINKS.map((link, index) => (
+                    {LINKS.map((link, index) => {
+                        // Don't show "Sign In" if user is authenticated
+                        // Don't show "Sign Out" if user is not authenticated
+                        if ((user && link.name === "Sign In") || (!user && link.name === "Sign Out")) {
+                            return null;
+                        }
+                        return (
+                            <Link 
+                                key={index} 
+                                to={link.link} 
+                                className="uppercase text-sm font-medium"
+                                onClick={(e) => handleLinkClick(e, link)}
+                            >
+                                {link.name}
+                            </Link>
+                        );
+                    })}
+                </div>
+            </div>
+            
+            <div className={`${isOpen ? "block" : "hidden"} md:hidden absolute bg-neutral-50 w-full py-5 px-4 mt-2 border-b-4`}>
+                {LINKS.map((link, index) => {
+                    // Don't show "Sign In" if user is authenticated
+                    // Don't show "Sign Out" if user is not authenticated
+                    if ((user && link.name === "Sign In") || (!user && link.name === "Sign Out")) {
+                        return null;
+                    }
+                    return (
                         <Link 
                             key={index} 
                             to={link.link} 
-                            className="uppercase text-sm font-medium"
+                            className="uppercase text-lg font-medium block py-2 tracking-wide"
                             onClick={(e) => handleLinkClick(e, link)}
                         >
                             {link.name}
                         </Link>
-                    ))}
-                </div>
-            </div>
-            <div className={`${isOpen ? "block" : "hidden"} md:hidden absolute bg-neutral-50 w-full py-5 px-4 mt-2 border-b-4`}>
-                {LINKS.map((link, index) => (
-                    <Link 
-                        key={index} 
-                        to={link.link} 
-                        className="uppercase text-lg font-medium block py-2 tracking-wide"
-                        onClick={(e) => handleLinkClick(e, link)}
-                    >
-                        {link.name}
-                    </Link>
-                ))}
+                    );
+                })}
             </div>
 
             <LoginModal 

@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'; 
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../utils/auth';
+import {jwtDecode } from 'jwt-decode';
+import {useApolloClient} from '@apollo/client'
+
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN_USER);
-
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState('');
+  const { login: authLogin } = useAuth();
+  const client = useApolloClient();
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -23,18 +30,27 @@ const LoginModal = ({ isOpen, onClose }) => {
       });
       
       localStorage.setItem('token', data.login.token);
+      
+      authLogin(data.login.token);
+  
+      const decodedToken = jwtDecode(data.login.token);
+  
+      if (decodedToken.user.role === 2) {
+        navigate('/adminHome');
+      } else if(decodedToken.user.role === 0){
+        navigate('/UserDashboard');
+      }
+      client.resetStore();
       onClose();
     } catch (e) {
-      console.error(e);
+      console.error('Error:', e);
+      setLoginError(e.message);
     }
   };
-
-  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
   const handleClickOutside = (event) => {
-    // Check if the user clicked outside the modal content
     if (event.target.id === 'modal-background') {
       onClose();
     }
@@ -48,6 +64,11 @@ const LoginModal = ({ isOpen, onClose }) => {
     >
       <div className="relative p-6 border w-96 shadow-lg rounded-md bg-white" onClick={(e) => e.stopPropagation()}>
         <div className="text-center">
+        {loginError && (
+  <p className="text-red-500 text-xs italic mt-2">
+    
+  </p>
+)}
           <h3 className="text-lg leading-6 font-medium text-gray-900">Sign In</h3>
           <form className="mt-2 px-7 py-3" onSubmit={handleFormSubmit}>
             <input

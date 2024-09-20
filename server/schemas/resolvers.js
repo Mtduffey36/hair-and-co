@@ -1,10 +1,13 @@
 const { User, Service, Stylist, Appointment, Review } = require('../models');
 const { AuthenticationError, signToken } = require('../utils/auth');
-
+const bcrypt = require('bcrypt');
 const resolvers = {
   
   Query: {
-    users: async () => {
+    users: async (parent, args, context) => {
+      if (!context.user || context.user.role !== 2) {
+        throw new AuthenticationError('Not authorized to view all users');
+      }
       return User.find();
     },
     user: async (parent, { userId }) => {
@@ -17,10 +20,10 @@ const resolvers = {
       return Service.findById(serviceId);
     },
     stylists: async () => {
-      return Stylist.find().populate('userId');
+      return Stylist.find();
     },
     stylist: async (parent, { stylistId }) => {
-      return Stylist.findById(stylistId).populate('userId');
+      return Stylist.findById(stylistId);
     },
     stylistAppointments: async (_, { stylistId, date }) => {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) {
@@ -76,21 +79,53 @@ const resolvers = {
 
       return { token, user };
     },
-    addService: async (parent, { name, description, price, duration }) => {
+    addService: async (parent, { name, description, price, duration }, context) => {
+      if(!context.user || context.user.role !==2){
+        throw new AuthenticationError('Not authorized to add services');
+      }
       return Service.create({ name, description, price, duration });
     },
-    updateService: async (parent, { serviceId, name, description, price, duration }) => {
+    updateService: async (parent, { serviceId, name, description, price, duration }, context) => {
+      if(!context.user || context.user.role!==2){
+        throw new AuthenticationError('Not authorized to update services');
+      }
       return Service.findByIdAndUpdate(
         serviceId,
         { name, description, price, duration },
         { new: true }
       );
     },
-    deleteService: async (parent, { serviceId }) => {
+    deleteService: async (parent, { serviceId }, context) => {
+      if(!context.user || context.user.role!==2){
+        throw new AuthenticationError('Not authorized to delete services');
+      }
       return Service.findByIdAndDelete(serviceId);
     },
-    addStylist: async (parent, { userId, specialties, experience }) => {
-      return Stylist.create({ userId, specialties, experience });
+    addStylist: async (parent, { name, lastName, email, phoneNumber, specialties, experience }) => {
+      const defaultPassword = 'defaultPassword123';
+      const hashedPassword = await bcrypt.hash(defaultPassword, 10);
+      
+      return Stylist.create({ 
+        name, 
+        lastName, 
+        email, 
+        phoneNumber, 
+        password: hashedPassword,
+        specialties, 
+        experience 
+      });
+    },
+    updateStylist: async (parent, { stylistId, name, lastName, email, phoneNumber, specialties, experience, password }) => {
+      const updateData = { name, lastName, email, phoneNumber, specialties, experience };
+      
+      if (password) {
+        updateData.password = await bcrypt.hash(password, 10);
+      }
+
+      return Stylist.findByIdAndUpdate(stylistId, updateData, { new: true });
+    },
+    deleteStylist: async (parent, { stylistId }) => {
+      return Stylist.findByIdAndDelete(stylistId);
     },
     addAppointment: async (parent, { firstName, lastName, email, phoneNumber, stylistId, serviceId, date, time, notes }) => {
       const newAppointment = await Appointment.create({ 
@@ -122,7 +157,6 @@ const resolvers = {
   },
   Stylist: {
     _id: (parent) => parent._id.toString(),
-    user: async (parent) => await User.findById(parent.userId),
   },
   Appointment: {
     _id: (parent) => parent._id.toString(),

@@ -1,6 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
+import { setContext } from '@apollo/client/link/context';
+import ProtectedRoute from './components/ProtectedRoute';
+import { useAuth } from './utils/auth';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Lightbox from "yet-another-react-lightbox";
@@ -14,16 +17,33 @@ import MalloryPortfolio from "./Pages/MalloryPortfolio";
 import KaylaPortfolio from "./Pages/KaylaPortfolio";
 import AdminHome from "./Pages/AdminHome"
 import AdminServices from "./Pages/AdminServices";
+import AdminStylists from "./Pages/AdminStylists";
+import UserDashboard from "./Pages/UserDashboard";
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql'
+});
+
+const authLink = setContext((_,{headers})=>{
+  const token = localStorage.getItem('id_token');
+  return{
+    headers:{
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
 
 const client = new ApolloClient({
-  //For testing copy and paste the URL given when u run your server
-  uri: 'http://localhost:3001/graphql', 
-  credentials: 'include',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 });
 
 
 const App = () => {
+  const { user } = useAuth();
+
   return (
     <ApolloProvider client={client}>
       <Router>
@@ -38,8 +58,58 @@ const App = () => {
             <Route path="/meganPortfolio" element={<MeganPortfolio />} />
             <Route path="/malloryPortfolio" element={<MalloryPortfolio />} />
             <Route path="/kaylaPortfolio" element={<KaylaPortfolio />} />
-            <Route path="/adminHome" element={<AdminHome />} />
-            <Route path="/AdminServices" element={<AdminServices />} />
+
+            <Route 
+              path="/userDashboard" 
+              element={
+                <ProtectedRoute requiredRole={0}>
+                  <UserDashboard />
+                </ProtectedRoute>
+              } 
+            />
+
+
+            <Route 
+              path="/" 
+              element={
+                user 
+                  ? (user.role === 2 
+                      ? <Navigate to="/adminHome" replace /> 
+                      : <Navigate to="/" replace />)
+                  : <Home />
+              } 
+            />
+
+{/* Protected Admin Routes */}
+
+            <Route 
+              path="/adminHome" 
+              element={
+                <ProtectedRoute requiredRole={2}>
+                  <AdminHome />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/AdminServices" 
+              element={
+                <ProtectedRoute requiredRole={2}>
+                  <AdminServices />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/AdminStylists" 
+              element={
+                <ProtectedRoute requiredRole={2}>
+                  <AdminStylists />
+                </ProtectedRoute>
+              } 
+            />
+
+          
+
+
           </Routes>
           <Footer />
           <Lightbox />

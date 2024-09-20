@@ -45,6 +45,10 @@ export const LINKS = [
     name: "Sign In",
     link: "#sign-in",
   },
+  {
+    name: "Sign Out",
+    link: "#sign-out",
+  },
 ];
 export const SLIDES_CONTENT = [
   {
