@@ -9,7 +9,7 @@ const KaylaPortfolio = () => {
   };
 
   const handleNextClick = () => {
-    navigate("/megan"); // Adjust this path to the next stylist profile page
+    navigate("/meganPortfolio"); // Adjust this path to the next stylist profile page
   };
 
   return (
@@ -50,7 +50,7 @@ const KaylaPortfolio = () => {
                   onClick={handleNextClick}
                   className="absolute right-0 top-0 mt-6 mr-4 text-lg text-rosy-brown font-semibold hover:text-gray-500"
                 >
-                  Next &rarr;
+                  Next Stylist &rarr;
                 </button>
               </div>
             </main>
