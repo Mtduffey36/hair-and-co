@@ -8,6 +8,7 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [showScrollUpButton, setShowScrollUpButton] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
     const navigate = useNavigate();
 
     // Toggle the menu
@@ -60,19 +61,28 @@ const Navbar = () => {
             }
         };
 
+        // Check for screen resize to adjust isDesktop state
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth > 768);
+        };
+
         window.addEventListener("scroll", handleScroll);
+        window.addEventListener("resize", handleResize);
+
         return () => {
             window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
     return (
         <nav className="border-b-2 relative">
             <div className="max-w-7xl mx-auto flex justify-between items-center py-8">
+                {/* Logo Placeholder */}
                 <div className="pl-2">
-                    {/* <Link to="/">
-                        <img src={logo} width={150} height={15} alt="VastuSpaze" />
-                    </Link> */}
+                    <Link to="/about">
+                        <h1 id="companyLogo"><strong>Hair & Co</strong></h1>
+                    </Link>
                 </div>
 
                 <div className="md:hidden">
@@ -97,8 +107,7 @@ const Navbar = () => {
                     ))}
                 </div>
             </div>
-            <div className={`${isOpen ? "block" : "hidden"} md:hidden absolute bg-neutral-50
-                w-full py-5 px-4 mt-2 border-b-4`}>
+            <div className={`${isOpen ? "block" : "hidden"} md:hidden absolute bg-neutral-50 w-full py-5 px-4 mt-2 border-b-4`}>
                 {LINKS.map((link, index) => (
                     <Link 
                         key={index} 
@@ -116,15 +125,27 @@ const Navbar = () => {
                 onClose={() => setIsLoginModalOpen(false)} 
             />
 
-            {/* Scroll to Top Button */}
-            {showScrollUpButton && (
-                <button 
-                    className="fixed bottom-8 left-4 p-3 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-800 transition duration-300"
-                    onClick={scrollToTop}
-                    aria-label="Scroll to top"
-                >
-                    <RiArrowUpLine size={24} />
-                </button>
+            {/* Scroll to Top Buttons */}
+            {showScrollUpButton && isDesktop && (
+                <>
+                    {/* Left Scroll to Top Button */}
+                    <button 
+                        className="fixed top-1/2 left-4 transform -translate-y-1/2 p-3 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-800 transition duration-300 z-50"
+                        onClick={scrollToTop}
+                        aria-label="Scroll to top left"
+                    >
+                        <RiArrowUpLine size={24} />
+                    </button>
+
+                    {/* Right Scroll to Top Button */}
+                    <button 
+                        className="fixed top-1/2 right-4 transform -translate-y-1/2 p-3 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-800 transition duration-300 z-50"
+                        onClick={scrollToTop}
+                        aria-label="Scroll to top right"
+                    >
+                        <RiArrowUpLine size={24} />
+                    </button>
+                </>
             )}
         </nav>
     );

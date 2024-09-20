@@ -37,3 +37,25 @@
 #signupBackground {
   background-color: #f2eee3;
 }
+
+#stylist1 {
+  object-position: center 30%;
+}
+
+#stylist2 {
+  object-position: center 25%;
+}
+
+#stylist3 {
+  object-position: center 15%;
+}
+
+#companyLogo {
+  font-weight: bold;
+  font-family: "Fraunces", sans-serif;
+  left: 30px;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: scale(1.5);
+  transform-origin: left;
+}
