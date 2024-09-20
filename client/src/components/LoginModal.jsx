@@ -81,6 +81,7 @@ const LoginModal = ({ isOpen, onClose }) => {
           >
             Create Account
           </button>
+          <p></p>
         </div>
         <div className="items-center px-7 py-3">
           <button

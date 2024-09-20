@@ -40,13 +40,13 @@ const SignUp = () => {
   };
 
   return (
-    <div id='signupBackground' className="min-h-screen bg-gray-100 flex items-center justify-center py-4 sm:px-4 lg:px-6">
-      <div className="sm:w-full sm:max-w-md bg-white shadow rounded-lg p-6 sm:p-8">
-        <h2 className="text-center text-3xl font-extrabold text-gray-900 mb-4">
-          Create your account
+    <div id='signupBackground' className="min-h- bg-gray-100 flex items-center justify-center py-6">
+      <div className="sm:w-full sm:max-w-lg p-6 sm:p-8 space-y-4">
+        <h2 className="text-center text-2xl font-bold text-gray-900 mb-2">
+          Create Your Account
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                 First Name
@@ -56,7 +56,7 @@ const SignUp = () => {
                 name="name"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-rosy-brown focus:border-rosy-brown text-base"
                 value={formData.name}
                 onChange={handleChange}
               />
@@ -70,7 +70,7 @@ const SignUp = () => {
                 name="lastName"
                 type="text"
                 required
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-rosy-brown focus:border-rosy-brown text-base"
                 value={formData.lastName}
                 onChange={handleChange}
               />
@@ -78,7 +78,7 @@ const SignUp = () => {
           </div>
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email address
+              Email Address
             </label>
             <input
               id="email"
@@ -86,7 +86,7 @@ const SignUp = () => {
               type="email"
               autoComplete="email"
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-rosy-brown focus:border-rosy-brown text-base"
               value={formData.email}
               onChange={handleChange}
             />
@@ -101,7 +101,7 @@ const SignUp = () => {
               type="password"
               autoComplete="new-password"
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-rosy-brown focus:border-rosy-brown text-base"
               value={formData.password}
               onChange={handleChange}
             />
@@ -116,7 +116,7 @@ const SignUp = () => {
               type="tel"
               autoComplete="tel"
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-rosy-brown focus:border-rosy-brown text-base"
               value={formData.phoneNumber}
               onChange={handleChange}
             />
@@ -129,8 +129,9 @@ const SignUp = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-xl bg-rosy-brown py-2 px-6 font-Montserrat font-medium text-white hover:bg-gray-500">
-            {loading ? 'Signing up...' : 'Sign up'}
+            className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md bg-rosy-brown text-white text-lg font-semibold hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rosy-brown transition duration-150 ease-in-out"
+          >
+            {loading ? 'Signing up...' : 'Sign Up'}
           </button>
         </form>
       </div>
