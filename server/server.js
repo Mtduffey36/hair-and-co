@@ -17,9 +17,11 @@ const server = new ApolloServer({
   playground: true,
   introspection: true
 });
+
+
 const startApolloServer = async () => {
   await server.start();
-  server.applyMiddleware({
+  server.applyMiddleware({ 
     app,
     path: '/graphql',
     cors: false
