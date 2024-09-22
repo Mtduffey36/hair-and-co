@@ -15,8 +15,15 @@ import {
 //photo gallery
 import HairBlowout from "../assets/HairBlowout.jpg"
 import slide1 from "../assets/MeganHairOne.jpg";
-import slide2 from "../assets/HairShots.jpg";
+import slide2 from "../assets/hair1.jpg";
 import slide3 from "../assets/CopperHair.jpg";
+import slide4 from "../assets/hair2.jpg";
+import slide5 from "../assets/hair3.jpg";
+import slide6 from "../assets/hair4.jpg";
+import slide7 from "../assets/hair5.jpg";
+import slide8 from "../assets/hair6.jpg";
+import slide9 from "../assets/hair7.jpg";
+import slide10 from "../assets/hair8.jpg";
 
 
 const OurWork = () => {
@@ -51,6 +58,13 @@ const OurWork = () => {
                 { src: slide1 },
                 { src: slide2 },
                 { src: slide3 },
+                { src: slide4 },
+                { src: slide5 },
+                { src: slide6 },
+                { src: slide7 },
+                { src: slide8 },
+                { src: slide9 },
+                { src: slide10 },
             ]}
 
             />
