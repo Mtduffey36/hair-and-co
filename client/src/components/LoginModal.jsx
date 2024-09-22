@@ -32,15 +32,16 @@ const LoginModal = ({ isOpen, onClose }) => {
       localStorage.setItem('token', data.login.token);
       
       authLogin(data.login.token);
-  
+      await client.resetStore(); 
       const decodedToken = jwtDecode(data.login.token);
   
       if (decodedToken.user.role === 2) {
         navigate('/adminHome');
       } else if(decodedToken.user.role === 0){
         navigate('/UserDashboard');
+      } else if(decodedToken.user.role === 1){
+        navigate('/StylistDashboard');
       }
-      client.resetStore();
       onClose();
     } catch (e) {
       console.error('Error:', e);

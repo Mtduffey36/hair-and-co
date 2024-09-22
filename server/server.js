@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3001', 'https://studio.apollographql.com'],
+  origin: ['http://localhost:5173', 'http://localhost:3001', 'https://studio.apollographql.com', 'https://hairandco.netlify.app/'],
   credentials: true
 })); 
 
@@ -21,12 +21,9 @@ const server = new ApolloServer({
   introspection: true
 });
 
-server.applyMiddleware({ app });
-
 
 const startApolloServer = async () => {
   await server.start();
-  
   server.applyMiddleware({ 
     app,
     path: '/graphql',

@@ -63,20 +63,24 @@ const resolvers = {
       return { token, user };
     },
     login: async (parent, { email, password }) => {
+      console.log('Login attempt for email:', email);
       const user = await User.findOne({ email });
-
+    
       if (!user) {
+        console.log('No user found for email:', email);
         throw new AuthenticationError('No user found with this email address');
       }
-
+    
       const correctPw = await user.isCorrectPassword(password);
-
+    
       if (!correctPw) {
+        console.log('Incorrect password for email:', email);
         throw new AuthenticationError('Incorrect credentials');
       }
-
+    
       const token = signToken(user);
-
+      console.log('Token generated:', token);
+    
       return { token, user };
     },
     addService: async (parent, { name, description, price, duration }, context) => {
