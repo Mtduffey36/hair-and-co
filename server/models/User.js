@@ -30,11 +30,16 @@ const userSchema = new Schema({
   role: {
     type: Number,
     default: 0, // 0: customer, 1: stylist, 2: owner
-    enum: [0, 1, 2],
   },
   createdAt: {
     type: Date,
     default: Date.now,
+  },
+  isStylist: {
+    type: Boolean,
+  },
+  isDefaultPassword:{
+    type: Boolean,
   },
 });
 

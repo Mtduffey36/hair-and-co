@@ -1,19 +1,17 @@
 const { User, Service, Stylist, Appointment, Review } = require('../models');
-const { AuthenticationError, signToken } = require('../utils/auth');
+const {signToken } = require('../utils/auth');
+const { AuthenticationError } = require('apollo-server-express');
 const bcrypt = require('bcrypt');
 const resolvers = {
   
   Query: {
-    users: async (parent, args, context) => {
-      if (!context.user || context.user.role !== 2) {
-        throw new AuthenticationError('Not authorized to view all users');
-      }
+    users: async () => {
       return User.find();
     },
     user: async (parent, { userId }) => {
       return User.findById(userId);
     },
-    services: async () => {
+    services: async (parent, args, context) => {
       return Service.find();
     },
     service: async (parent, { serviceId }) => {
@@ -64,24 +62,61 @@ const resolvers = {
     },
     login: async (parent, { email, password }) => {
       console.log('Login attempt for email:', email);
-      const user = await User.findOne({ email });
+      let user = await User.findOne({ email });
+      let isStylist = false;
+    
+      if (!user) {
+        user = await Stylist.findOne({ email });
+        if (user) {
+          isStylist = true;
+          console.log('User found as stylist');
+        }
+      }
     
       if (!user) {
         console.log('No user found for email:', email);
         throw new AuthenticationError('No user found with this email address');
       }
     
+      console.log('User role:', user.role);
+    
+      const isDefaultPassword = user.password === 'defaultPassword123';
+    
+      console.log('Attempting password verification');
       const correctPw = await user.isCorrectPassword(password);
+      console.log('Password correct:', correctPw);
     
       if (!correctPw) {
         console.log('Incorrect password for email:', email);
         throw new AuthenticationError('Incorrect credentials');
       }
     
-      const token = signToken(user);
-      console.log('Token generated:', token);
+      const tokenPayload = {
+        _id: user._id,
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,
+        isStylist: user.role === 1,
+        isDefaultPassword
+      };
     
-      return { token, user };
+      const token = signToken(tokenPayload);
+      console.log('Token generated:', token);
+      
+    
+      return { 
+        token, 
+        user: {
+          _id: user._id,
+          name: user.name,
+          lastName: user.lastName,
+          email: user.email,
+          role: user.role,
+          isStylist, 
+          isDefaultPassword
+        }
+      };
     },
     addService: async (parent, { name, description, price, duration }, context) => {
       if(!context.user || context.user.role !==2){
@@ -107,17 +142,19 @@ const resolvers = {
     },
     addStylist: async (parent, { name, lastName, email, phoneNumber, specialties, experience }) => {
       const defaultPassword = 'defaultPassword123';
-      const hashedPassword = await bcrypt.hash(defaultPassword, 10);
       
-      return Stylist.create({ 
+      const newStylist = await Stylist.create({ 
         name, 
         lastName, 
         email, 
         phoneNumber, 
-        password: hashedPassword,
+        password: defaultPassword,
         specialties, 
         experience 
       });
+    
+      console.log('New stylist created:', newStylist);
+      return newStylist;
     },
     updateStylist: async (parent, { stylistId, name, lastName, email, phoneNumber, specialties, experience, password }) => {
       const updateData = { name, lastName, email, phoneNumber, specialties, experience };
@@ -150,6 +187,17 @@ const resolvers = {
     },
     addReview: async (parent, { customerId, stylistId, appointmentId, calification, comment }) => {
       return Review.create({ customerId, stylistId, appointmentId, calification, comment });
+    },
+    updateStylistPassword: async (parent, { email, password }, context) => {
+      const updatedStylist = await Stylist.findOneAndUpdate(
+        { email },
+        { password },
+        { new: true }
+      );
+      if (!updatedStylist) {
+        throw new Error('Stylist not found');
+      }
+      return updatedStylist;
     },
   },
 
