@@ -42,7 +42,7 @@ const SignUp = () => {
   return (
     <div id='signupBackground' className="min-h- bg-gray-100 flex items-center justify-center py-6">
       <div className="sm:w-full sm:max-w-lg p-6 sm:p-8 space-y-4">
-        <h2 className="text-center text-2xl font-bold text-gray-900 mb-2">
+        <h2 className="text-center text-2xl font-bold text-gray-900 mb-2 font-text-fraunces">
           Create Your Account
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
