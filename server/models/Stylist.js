@@ -27,7 +27,6 @@ const stylistSchema = new Schema({
   password: {
     type: String,
     required: true,
-    default: 'defaultPassword123' // This will be hashed before saving
   },
   role: {
     type: Number,
@@ -55,10 +54,16 @@ const stylistSchema = new Schema({
 // Hash password before saving, but only if it's been modified
 stylistSchema.pre('save', async function(next) {
   if (this.isModified('password')) {
+    console.log('Hashing password for stylist:', this.email);
     this.password = await bcrypt.hash(this.password, 10);
+    console.log('Hashed password:', this.password);
   }
   next();
 });
+
+stylistSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
 const Stylist = model('Stylist', stylistSchema);
 

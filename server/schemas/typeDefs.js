@@ -1,15 +1,16 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-  type User {
-    _id: ID
-    name: String
-    lastName: String
-    email: String
-    phoneNumber: String
-    role: Int
-    createdAt: String
-  }
+type User {
+  _id: ID
+  name: String
+  lastName: String
+  email: String
+  phoneNumber: String
+  role: Int
+  isStylist: Boolean
+  isDefaultPassword: Boolean
+}
 
   type Service {
     _id: ID
@@ -87,6 +88,7 @@ const typeDefs = gql`
     addAppointment(firstName: String!, lastName: String!, email: String!, phoneNumber: String!, stylistId: ID!, serviceId: ID!, date: String!, time: String!, notes: String): Appointment
     updateAppointmentStatus(appointmentId: ID!, status: String!): Appointment
     addReview(customerId: ID!, stylistId: ID!, appointmentId: ID!, calification: Int!, comment: String): Review
+    updateStylistPassword(email: String!, password: String!): Stylist
   }
 `;
 
