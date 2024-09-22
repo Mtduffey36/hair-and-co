@@ -19,6 +19,7 @@ import AdminHome from "./Pages/AdminHome"
 import AdminServices from "./Pages/AdminServices";
 import AdminStylists from "./Pages/AdminStylists";
 import UserDashboard from "./Pages/UserDashboard";
+import StylistsDashboard from "./Pages/StylistsDashboard";
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -68,6 +69,14 @@ const App = () => {
               } 
             />
 
+              <Route 
+              path="/stylistsDashboard" 
+              element={
+                <ProtectedRoute requiredRole={1}>
+                  <StylistsDashboard/>
+                </ProtectedRoute>
+              } 
+            />  
 
             <Route 
               path="/" 
