@@ -1,11 +1,21 @@
 import hero from "../assets/salon.png";
+//image on services page
 import HairImage from "../assets/CopperHair.jpg";
+//images for stylist profiles
 import portfolio1 from "../assets/Stylist1.jpg";
 import portfolio2 from "../assets/Stylist2.jpg";
 import portfolio3 from "../assets/Stylist3.jpg";
+//images for lightbox
 import slide1 from "../assets/MeganHairOne.jpg";
-import slide2 from "../assets/HairShots.jpg";
+import slide2 from "../assets/hair1.jpg";
 import slide3 from "../assets/CopperHair.jpg";
+import slide4 from "../assets/hair2.jpg";
+import slide5 from "../assets/hair3.jpg";
+import slide6 from "../assets/hair4.jpg";
+import slide7 from "../assets/hair5.jpg";
+import slide8 from "../assets/hair6.jpg";
+import slide9 from "../assets/hair7.jpg";
+import slide10 from "../assets/hair8.jpg";
 
 
 export const LINKS = [
@@ -50,6 +60,7 @@ export const LINKS = [
     link: "#sign-out",
   },
 ];
+
 export const SLIDES_CONTENT = [
   {
     image: slide1,
@@ -57,11 +68,38 @@ export const SLIDES_CONTENT = [
   },
   {
     image: slide2,
-    alt: "hair shots",
+    alt: "hair1",
   },
   {
     image: slide3,
     alt: "copper",
+  },
+  {
+    image: slide4,
+    alt: "hair2",
+  },
+  {
+    image: slide5,
+    alt: "hair3",
+  },
+  {
+    image: slide6,
+    alt: "hair4",
+  },
+  {
+    image: slide7,
+    alt: "hair5",
+  }, {
+    image: slide8,
+    alt: "hair6",
+  },
+  {
+    image: slide9,
+    alt: "hair7",
+  },
+  {
+    image: slide10,
+    alt: "hair8",
   },
 ];
 
