@@ -20,9 +20,9 @@ export const useAuth = () => {
       }, [])
 
       const login = (token) => {
-        localStorage.setItem('token', token);
-        const decodedToken = jwtDecode(token);
-        setUser(decodedToken.user);
+  localStorage.setItem('token', token);
+  const decodedToken = jwtDecode(token);
+   setUser(decodedToken.user);
       };
     
       const logout = () => {
