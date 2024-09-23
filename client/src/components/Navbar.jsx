@@ -12,6 +12,7 @@ const Navbar = () => {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
     const { user, logout } = useAuth();
     const navigate = useNavigate();
+ 
 
     // Toggle the menu
     const toggleMenu = () => {
@@ -80,6 +81,10 @@ const Navbar = () => {
         };
     }, []);
 
+        const filteredLinks = LINKS.filter(link => 
+        link.roles.includes(user ? user.role : null)
+        );
+        
     return (
         <nav className="border-b-2 relative">
             <div className="max-w-7xl mx-auto flex justify-between items-center py-8">
@@ -100,7 +105,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden md:flex space-x-8 md:space-x-4 pr-2">
-                    {LINKS.map((link, index) => {
+                    {filteredLinks.map((link, index) => {
                         // Don't show "Sign In" if user is authenticated
                         // Don't show "Sign Out" if user is not authenticated
                         if ((user && link.name === "Sign In") || (!user && link.name === "Sign Out")) {
@@ -121,7 +126,7 @@ const Navbar = () => {
             </div>
             
             <div className={`${isOpen ? "block" : "hidden"} md:hidden absolute bg-neutral-50 w-full py-5 px-4 mt-2 border-b-4`}>
-                {LINKS.map((link, index) => {
+                {filteredLinks.map((link, index) => {
                     // Don't show "Sign In" if user is authenticated
                     // Don't show "Sign Out" if user is not authenticated
                     if ((user && link.name === "Sign In") || (!user && link.name === "Sign Out")) {
