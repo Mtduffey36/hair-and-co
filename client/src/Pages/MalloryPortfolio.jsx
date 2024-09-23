@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import portfolio2 from "../assets/Stylist2.jpg";
 
 const MalloryPortfolio = () => {
   const navigate = useNavigate();
@@ -60,8 +61,7 @@ const MalloryPortfolio = () => {
           <img
             id="stylist2"
             className="h-56 w-full object-cover object-center sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="src/assets/Stylist2.jpg"
-            alt="Stylist2"
+            src={portfolio2} alt="mallory"
           />
         </div>
       </div>
