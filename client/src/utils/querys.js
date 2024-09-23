@@ -45,13 +45,13 @@ query StylistAppointments($stylistId: ID!, $date: String!) {
 export const GET_USERS = gql`
   query GetUsers {
     users {
-     _id
-    createdAt
-    email
-    lastName
-    name
-    phoneNumber
-    role
+      _id
+      email
+      isDefaultPassword
+      isStylist
+      lastName
+      name
+      phoneNumber
     }
   }
 `;

@@ -31,7 +31,6 @@ const SignUp = () => {
           role: 0 
         }
       });
-      console.log('User created:', data.addUser);
       alert('User registered successfully!');
       navigate('/');
     } catch (err) {

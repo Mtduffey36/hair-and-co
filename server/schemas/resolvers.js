@@ -61,7 +61,6 @@ const resolvers = {
       return { token, user };
     },
     login: async (parent, { email, password }) => {
-      console.log('Login attempt for email:', email);
       let user = await User.findOne({ email });
       let isStylist = false;
     
@@ -69,52 +68,38 @@ const resolvers = {
         user = await Stylist.findOne({ email });
         if (user) {
           isStylist = true;
-          console.log('User found as stylist');
         }
       }
     
       if (!user) {
-        console.log('No user found for email:', email);
         throw new AuthenticationError('No user found with this email address');
       }
     
-      console.log('User role:', user.role);
-    
-      const isDefaultPassword = user.password === 'defaultPassword123';
-    
-      console.log('Attempting password verification');
       const correctPw = await user.isCorrectPassword(password);
-      console.log('Password correct:', correctPw);
     
       if (!correctPw) {
-        console.log('Incorrect password for email:', email);
         throw new AuthenticationError('Incorrect credentials');
       }
+    
+      const isDefaultPassword = isStylist ? user.isDefaultPassword : false;
     
       const tokenPayload = {
         _id: user._id,
         name: user.name,
         lastName: user.lastName,
         email: user.email,
-        role: user.role,
-        isStylist: user.role === 1,
+        role: isStylist ? 1 : user.role,
+        isStylist,
         isDefaultPassword
       };
     
       const token = signToken(tokenPayload);
-      console.log('Token generated:', token);
-      
+    
     
       return { 
         token, 
         user: {
-          _id: user._id,
-          name: user.name,
-          lastName: user.lastName,
-          email: user.email,
-          role: user.role,
-          isStylist, 
-          isDefaultPassword
+          ...tokenPayload
         }
       };
     },
@@ -153,7 +138,6 @@ const resolvers = {
         experience 
       });
     
-      console.log('New stylist created:', newStylist);
       return newStylist;
     },
     updateStylist: async (parent, { stylistId, name, lastName, email, phoneNumber, specialties, experience, password }) => {
@@ -189,15 +173,43 @@ const resolvers = {
       return Review.create({ customerId, stylistId, appointmentId, calification, comment });
     },
     updateStylistPassword: async (parent, { email, password }, context) => {
-      const updatedStylist = await Stylist.findOneAndUpdate(
-        { email },
-        { password },
-        { new: true }
-      );
-      if (!updatedStylist) {
-        throw new Error('Stylist not found');
+      if (!context.user || context.user.role !== 1) {
+        throw new AuthenticationError('Not authorized to make this action');
       }
-      return updatedStylist;
+    
+      try {
+        const stylist = await Stylist.findOne({ email });
+    
+        if (!stylist) {
+          throw new Error('Stylist not found');
+        }
+        
+        stylist.password = password;
+        stylist.isDefaultPassword = false;
+    
+        await stylist.save();    
+        const token = signToken({
+          _id: stylist._id,
+          name: stylist.name,
+          lastName: stylist.lastName,
+          email: stylist.email,
+          role: stylist.role,
+          isStylist: true,
+          isDefaultPassword: stylist.isDefaultPassword
+        });
+    
+        return {
+          token,
+          stylist: {
+            _id: stylist._id,
+            email: stylist.email,
+            isDefaultPassword: stylist.isDefaultPassword
+          }
+        };
+      } catch (error) {
+        console.error('Error updating password:', error);
+        throw new Error('Error updating password');
+      }
     },
   },
 

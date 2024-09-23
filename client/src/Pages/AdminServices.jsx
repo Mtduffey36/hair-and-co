@@ -31,7 +31,6 @@ const AdminServices = () => {
           }
         });
         if (data.addService) {
-          console.log('Service added successfully:', data.addService);
           navigate('/adminHome');
           setTimeout(() => {
             window.location.reload();

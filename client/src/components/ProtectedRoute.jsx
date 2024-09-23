@@ -17,6 +17,11 @@ const ProtectedRoute = ({ children, requiredRole }) => {
   if (requiredRole && user.role !== requiredRole) {
     return <Navigate to="/" replace />;
   }
+  if (user.role === 1 && user.isDefaultPassword && location.pathname !== '/ChangeDefaultPassword') {
+    return <Navigate to="/ChangeDefaultPassword" replace />;
+  }else if(user.role === 1 && !user.isDefaultPassword && location.pathname === '/ChangeDefaultPassword'){
+    return   <Navigate to="/StylistsDashboard" replace />;
+  }
 
   return children;
 };

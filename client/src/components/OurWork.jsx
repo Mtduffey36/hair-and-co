@@ -70,7 +70,7 @@ const OurWork = () => {
             />
                 <p className="text-lg lg:text-2xl font-light text-center lg:text-left max-w-5xl mx-auto mt-8">
                     Love our work? Book an appointment with one of our Stylist! 
-                    
+                    </p>
                     <div className="max-w-xs text-lg text-center mx-auto">
                         <br />
                     <button className="rounded-xl bg-rosy-brown py-2
@@ -78,7 +78,7 @@ const OurWork = () => {
                         onClick={handleBookingClick}> Book Now!</button>
                     </div>
 
-                </p>
+                
             </div>
         </section>
     </>

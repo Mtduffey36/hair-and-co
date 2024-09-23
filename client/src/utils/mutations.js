@@ -119,4 +119,15 @@ mutation DeleteStylist($stylistId: ID!) {
   }
 }
 `
-
+export const UPDATE_STYLIST_PASSWORD = gql`
+  mutation UpdateStylistPassword($email: String!, $password: String!) {
+    updateStylistPassword(email: $email, password: $password) {
+      token
+      stylist {
+        _id
+        email
+        isDefaultPassword
+      }
+    }
+  }
+`;
