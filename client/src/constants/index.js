@@ -1,10 +1,13 @@
 import hero from "../assets/salon.png";
+
 //image on services page
 import HairImage from "../assets/CopperHair.jpg";
+
 //images for stylist profiles
 import portfolio1 from "../assets/Stylist1.jpg";
 import portfolio2 from "../assets/Stylist2.jpg";
 import portfolio3 from "../assets/Stylist3.jpg";
+
 //images for lightbox
 import slide1 from "../assets/MeganHairOne.jpg";
 import slide2 from "../assets/hair1.jpg";
@@ -32,7 +35,7 @@ export const LINKS = [
   {
     name: "Services",
     link: "/services",
-    roles: [0, 2], 
+    roles: [0, 2],
   },
   {
     name: "Stylists",
@@ -52,24 +55,18 @@ export const LINKS = [
   {
     name: "Reviews",
     link: "#reviews",
-    roles: [0], 
+    roles: [0],
   },
   {
     name: "Contact",
     link: "#contact",
-    roles: [0, 1, 2], 
+    roles: [0, 1, 2] 
   },
   {
     name: "Sign In",
     link: "#sign-in",
-    roles: [null], 
+    roles: [0, 1, 2],
   },
-  {
-    name: "Sign Out",
-    link: "#sign-out",
-    roles: [0, 1, 2], 
-  },
-
   {
     name: "Admin Home",
     link: "/adminHome",
@@ -101,7 +98,13 @@ export const LINKS = [
     link: "/StylistAppointments",
     roles: [1],
   },
+  {
+    name: "Sign Out",
+    link: "#sign-out",
+    roles: [0, 1, 2], 
+  },
 ];
+
 
 export const SLIDES_CONTENT = [
   {
