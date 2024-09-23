@@ -22,42 +22,84 @@ export const LINKS = [
   {
     name: "Home",
     link: "/",
+    roles: [0, 1, 2], 
   },
   {
     name: "Book appointment",
     link: "/booking",
+    roles: [0], 
   },
   {
     name: "Services",
     link: "/services",
+    roles: [0, 2], 
   },
   {
     name: "Stylists",
     link: "#portfolio",
+    roles: [0], 
   },
   {
     name: "Our Work",
     link: "#OurWork",
+    roles: [0], 
   },
   {
     name: "About",
     link: "/about",
+    roles: [0, 1, 2],
   },
   {
     name: "Reviews",
     link: "#reviews",
+    roles: [0], 
   },
   {
     name: "Contact",
     link: "#contact",
+    roles: [0, 1, 2], 
   },
   {
     name: "Sign In",
     link: "#sign-in",
+    roles: [null], 
   },
   {
     name: "Sign Out",
     link: "#sign-out",
+    roles: [0, 1, 2], 
+  },
+
+  {
+    name: "Admin Home",
+    link: "/adminHome",
+    roles: [2],
+  },
+  {
+    name: "Admin Services",
+    link: "/AdminServices",
+    roles: [2],
+  },
+  {
+    name: "New Stylist",
+    link: "/AdminStylists",
+    roles: [2],
+  },
+  {
+    name: "Admin Appointments",
+    link: "/AdminAppointments",
+    roles: [2],
+  },
+  
+  {
+    name: "Profile",
+    link: "/StylistProfile",
+    roles: [1],
+  },
+  {
+    name: "Stylist Appointments",
+    link: "/StylistAppointments",
+    roles: [1],
   },
 ];
 

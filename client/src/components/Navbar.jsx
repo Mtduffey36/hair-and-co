@@ -80,6 +80,10 @@ const Navbar = () => {
         };
     }, []);
 
+        const filteredLinks = LINKS.filter(link => 
+        link.roles.includes(user ? user.role : null)
+        );
+        
     return (
         <nav className="border-b-2 relative">
             <div className="max-w-7xl mx-auto flex justify-between items-center py-8">
