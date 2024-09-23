@@ -30,7 +30,6 @@ const AdminHome = () => {
             },
           });
           if (data.deleteService) {
-            console.log('Service deleted successfully');
             alert('Service deleted successfully!');
              setTimeout(() => {
               window.location.reload();
@@ -60,7 +59,6 @@ const AdminHome = () => {
             },
           });
           if (data.deleteStylist) {
-            console.log('Stylist deleted successfully');
             alert('Stylist deleted successfully!');
             setTimeout(() => {
               window.location.reload();

@@ -15,7 +15,6 @@ const stylistSchema = new Schema({
   email: {
     type: String,
     required: true,
-    // unique: true,
     trim: true,
     lowercase: true
   },
@@ -48,15 +47,17 @@ const stylistSchema = new Schema({
     default: 5,
     min: 0,
     max: 5,
+  },
+  isDefaultPassword: {
+    type: Boolean,
+    default: true, 
   }
 });
 
 // Hash password before saving, but only if it's been modified
 stylistSchema.pre('save', async function(next) {
   if (this.isModified('password')) {
-    console.log('Hashing password for stylist:', this.email);
     this.password = await bcrypt.hash(this.password, 10);
-    console.log('Hashed password:', this.password);
   }
   next();
 });

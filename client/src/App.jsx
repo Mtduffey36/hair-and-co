@@ -20,6 +20,7 @@ import AdminServices from "./Pages/AdminServices";
 import AdminStylists from "./Pages/AdminStylists";
 import UserDashboard from "./Pages/UserDashboard";
 import StylistsDashboard from "./Pages/StylistsDashboard";
+import ChangeDefaultPassword from "./Pages/ChangeDefaultPassword";
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -68,15 +69,24 @@ const App = () => {
                 </ProtectedRoute>
               } 
             />
+            <Route 
+  path="/ChangeDefaultPassword" 
+  element={
+    <ProtectedRoute requiredRole={1}>
+      <ChangeDefaultPassword />
+    </ProtectedRoute>
+  } 
+/>
 
               <Route 
-              path="/stylistsDashboard" 
+              path="/StylistsDashboard" 
               element={
                 <ProtectedRoute requiredRole={1}>
                   <StylistsDashboard/>
                 </ProtectedRoute>
               } 
             />  
+
 
             <Route 
               path="/" 
@@ -116,7 +126,6 @@ const App = () => {
               } 
             />
 
-        
 
 
           </Routes>

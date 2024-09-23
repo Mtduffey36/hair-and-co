@@ -31,6 +31,8 @@ type User {
     specialties: [String]
     bio: String
     rating: Float
+    isDefaultPassword: Boolean!
+
   }
 
   type Appointment {
@@ -62,6 +64,11 @@ type User {
     user: User
   }
 
+  type AuthPayload {
+    token: String!
+    stylist: Stylist!
+  }
+
   type Query {
     users: [User]
     user(userId: ID!): User
@@ -88,8 +95,7 @@ type User {
     addAppointment(firstName: String!, lastName: String!, email: String!, phoneNumber: String!, stylistId: ID!, serviceId: ID!, date: String!, time: String!, notes: String): Appointment
     updateAppointmentStatus(appointmentId: ID!, status: String!): Appointment
     addReview(customerId: ID!, stylistId: ID!, appointmentId: ID!, calification: Int!, comment: String): Review
-    updateStylistPassword(email: String!, password: String!): Stylist
-  }
-`;
+    updateStylistPassword(email: String!, password: String!): AuthPayload
+    }`;
 
 module.exports = typeDefs;

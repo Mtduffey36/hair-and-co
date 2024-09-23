@@ -3,9 +3,8 @@ import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations'; 
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
-import {jwtDecode } from 'jwt-decode';
-import {useApolloClient} from '@apollo/client'
-
+import { jwtDecode } from 'jwt-decode';
+import { useApolloClient } from '@apollo/client';
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [formState, setFormState] = useState({ email: '', password: '' });
@@ -14,6 +13,7 @@ const LoginModal = ({ isOpen, onClose }) => {
   const [loginError, setLoginError] = useState('');
   const { login: authLogin } = useAuth();
   const client = useApolloClient();
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -34,13 +34,16 @@ const LoginModal = ({ isOpen, onClose }) => {
       authLogin(data.login.token);
       await client.resetStore(); 
       const decodedToken = jwtDecode(data.login.token);
+      const { role, isDefaultPassword, isStylist } = decodedToken.user;
   
-      if (decodedToken.user.role === 2) {
-        navigate('/adminHome');
-      } else if(decodedToken.user.role === 0){
+      if (isStylist && isDefaultPassword) {
+        navigate('/ChangeDefaultPassword');
+      } else if (role === 1) {
+        navigate('/StylistsDashboard');
+      } else if (role === 0) {
         navigate('/UserDashboard');
-      } else if(decodedToken.user.role === 1){
-        navigate('/StylistDashboard');
+      } else if (role === 2) {
+        navigate('/adminHome');
       }
       onClose();
     } catch (e) {
