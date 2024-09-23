@@ -125,13 +125,7 @@ const App = () => {
                 </ProtectedRoute>
               } 
             />
-<<<<<<< Updated upstream
 
-        
-=======
-           
-          
->>>>>>> Stashed changes
 
 
           </Routes>
