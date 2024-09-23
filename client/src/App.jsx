@@ -15,7 +15,7 @@ import Home from "./components/Home";
 import MeganPortfolio from "./Pages/MeganPortfolio";
 import MalloryPortfolio from "./Pages/MalloryPortfolio";
 import KaylaPortfolio from "./Pages/KaylaPortfolio";
-import AdminHome from "./Pages/AdminHome"
+import AdminHome from "./Pages/AdminHome";
 import AdminServices from "./Pages/AdminServices";
 import AdminStylists from "./Pages/AdminStylists";
 import UserDashboard from "./Pages/UserDashboard";
@@ -90,7 +90,7 @@ const App = () => {
             />
 
 {/* Protected Admin Routes */}
-
+  
             <Route 
               path="/adminHome" 
               element={
@@ -116,7 +116,7 @@ const App = () => {
               } 
             />
 
-          
+        
 
 
           </Routes>

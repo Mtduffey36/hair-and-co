@@ -12,7 +12,6 @@ const Navbar = () => {
     const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
     const { user, logout } = useAuth();
     const navigate = useNavigate();
- 
 
     // Toggle the menu
     const toggleMenu = () => {
@@ -81,20 +80,49 @@ const Navbar = () => {
         };
     }, []);
 
-        const filteredLinks = LINKS.filter(link => 
-        link.roles.includes(user ? user.role : null)
-        );
-        
+    // Determine which links to show based on user role
+    const defaultLinks = [
+        "Home",
+        "Book appointment",
+        "Services", // Added Services to default links
+        "Stylists",
+        "Our Work",
+        "About",
+        "Reviews", // Added Reviews to default links
+        "Contact",
+        "Sign In",
+        "Sign Out"
+    ];
+    
+    const adminLinks = [
+        "Admin Home",
+        "Admin Services",
+        "New Stylist",
+        "Admin Appointments",
+        "Sign Out"
+    ];
+
+    // Filter links based on user role
+    const filteredLinks = LINKS.filter(link => {
+        if (user && user.role === 2) { // Admin logged in
+            return adminLinks.includes(link.name);
+        } else {
+            // Show default links for all users including guests and non-admin logged in users
+            return defaultLinks.includes(link.name);
+        }
+    }, [adminLinks]);
+
     return (
         <nav className="border-b-2 relative">
             <div className="max-w-7xl mx-auto flex justify-between items-center py-8">
                 {/* Logo Placeholder */}
                 <div className="pl-2">
-                    <Link to="/about">
+                    <Link to="/">
                         <h1 id="companyLogo"><strong>Hair & Co</strong></h1>
                     </Link>
                 </div>
 
+                {/* Mobile Menu Button */}
                 <div className="md:hidden">
                     <button 
                         onClick={toggleMenu} 
@@ -104,6 +132,7 @@ const Navbar = () => {
                     </button>
                 </div>
 
+                {/* Desktop Links */}
                 <div className="hidden md:flex space-x-8 md:space-x-4 pr-2">
                     {filteredLinks.map((link, index) => {
                         // Don't show "Sign In" if user is authenticated
@@ -125,6 +154,7 @@ const Navbar = () => {
                 </div>
             </div>
             
+            {/* Mobile Links */}
             <div className={`${isOpen ? "block" : "hidden"} md:hidden absolute bg-neutral-50 w-full py-5 px-4 mt-2 border-b-4`}>
                 {filteredLinks.map((link, index) => {
                     // Don't show "Sign In" if user is authenticated
@@ -145,6 +175,7 @@ const Navbar = () => {
                 })}
             </div>
 
+            {/* Login Modal */}
             <LoginModal 
                 isOpen={isLoginModalOpen} 
                 onClose={() => setIsLoginModalOpen(false)} 
