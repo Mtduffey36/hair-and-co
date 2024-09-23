@@ -3,11 +3,11 @@ import dayjs from 'dayjs'
 
 const localizer = dayjsLocalizer(dayjs)
 
-const MyCalendar = (props) => (
+const MyCalendar = ({ events }) => (
   <div>
     <Calendar
       localizer={localizer}
-      events={myEventsList}
+      events={events}
       startAccessor="start"
       endAccessor="end"
       style={{ height: 500 }}
