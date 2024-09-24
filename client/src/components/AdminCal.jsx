@@ -15,4 +15,4 @@ const MyCalendar = ({ events }) => (
   </div>
 );
 
-export default MyCalendar
+export default MyCalendar;

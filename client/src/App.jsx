@@ -23,7 +23,7 @@ import StylistsDashboard from "./Pages/StylistsDashboard";
 import ChangeDefaultPassword from "./Pages/ChangeDefaultPassword";
 
 const httpLink = createHttpLink({
-  uri: '/graphql'
+  uri: 'http://localhost:3001/graphql'
 });
 
 const authLink = setContext((_,{headers})=>{
