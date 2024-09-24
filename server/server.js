@@ -6,6 +6,7 @@ const db = require('./config/connection');
 const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const app = express();
+const path = require('path');
 
 app.use(cors({
   origin: ['http://localhost:5173', 'http://localhost:3001', 'https://studio.apollographql.com', 'https://hairandco.netlify.app/'],
@@ -16,7 +17,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
-  playground: true,
+  playground: false,
   introspection: true
 });
 
