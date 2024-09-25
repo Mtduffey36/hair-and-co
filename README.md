@@ -1,7 +1,7 @@
 # Hair & Co
 
 ## Description
-Website application for a local hair salon. 
+Website application for a local hair salon.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -17,9 +17,7 @@ This project does not require an installation. However, you are welcome to to ei
 ## Usage
 Deployed on [Render](https://hair-and-co.onrender.com/)
 
-![image of Mood-Sync Website](/public/images/Mood-Sync-cover.JPG)
-
-![image of Mood-Sync Website](./public/images/Mood-Sync-features.JPG)
+![image of Hair & Co Website](client/src/assets/salon.png)
 
 ## Credits
 - Manuel Pena
