@@ -52,6 +52,27 @@ const resolvers = {
     review: async (parent, { reviewId }) => {
       return Review.findById(reviewId).populate('customerId stylistId appointmentId');
     },
+    userAppointments: async (_, { email }) => {
+      try {
+        const currentDate = new Date().toISOString().split('T')[0]; 
+        
+        const appointments = await Appointment.find({
+          email: email,
+          $or: [
+            { date: { $gt: currentDate } },
+            {
+              date: currentDate,
+              time: { $gte: new Date().toTimeString().slice(0, 5) } 
+            }
+          ]
+        }).sort({ date: 1, time: 1 })
+          .populate('stylistId')
+          .populate('serviceId');
+          return appointments;
+      } catch (error) {
+        throw new Error('Error fetching user appointments: ' + error.message);
+      }
+    },
   },
 
   Mutation: {
@@ -209,6 +230,23 @@ const resolvers = {
       } catch (error) {
         console.error('Error updating password:', error);
         throw new Error('Error updating password');
+      }
+    },
+    cancelAppointment: async (parent, { id }, context) => {
+          if (!context.user) {
+            throw new AuthenticationError('You must be logged in to cancel an appointment');
+          }
+
+      try {
+        const deletedAppointment = await Appointment.findByIdAndDelete(id);
+
+        if (!deletedAppointment) {
+          throw new Error('Appointment not found');
+        }
+
+        return { _id: deletedAppointment._id };
+      } catch (error) {
+        throw new Error('Error cancelling appointment: ' + error.message);
       }
     },
   },

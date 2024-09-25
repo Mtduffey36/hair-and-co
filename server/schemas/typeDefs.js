@@ -68,6 +68,11 @@ type User {
     token: String!
     stylist: Stylist!
   }
+  
+type DeletedAppointmentResponse {
+  _id: ID!
+}
+
 
   type Query {
     users: [User]
@@ -81,6 +86,7 @@ type User {
     appointment(appointmentId: ID!): Appointment
     reviews: [Review]
     review(reviewId: ID!): Review
+    userAppointments(email: String!): [Appointment!]!
   }
 
   type Mutation {
@@ -96,6 +102,7 @@ type User {
     updateAppointmentStatus(appointmentId: ID!, status: String!): Appointment
     addReview(customerId: ID!, stylistId: ID!, appointmentId: ID!, calification: Int!, comment: String): Review
     updateStylistPassword(email: String!, password: String!): AuthPayload
-    }`;
+    cancelAppointment(id: ID!): DeletedAppointmentResponse
+  }`;
 
 module.exports = typeDefs;
