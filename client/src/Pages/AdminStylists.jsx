@@ -1,61 +1,64 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { ADD_STYLIST } from '../utils/mutations'; 
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { ADD_STYLIST } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 const AdminStylists = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
+    name: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
   });
   const navigate = useNavigate();
   const [addStylist, { error }] = useMutation(ADD_STYLIST);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await addStylist({
         variables: {
           ...formData,
-        }
+        },
       });
       if (data.addStylist) {
-        alert('Stylist created successfully!');
+        alert("Stylist created successfully!");
         setFormData({
-            name: '',
-            lastName: '',
-            email: '',
-            phoneNumber: '',
-            specialties: '',
-            experience: ''
-          });
-          setTimeout(() => {
-            navigate('/adminHome');
-          }, 2000);
-
+          name: "",
+          lastName: "",
+          email: "",
+          phoneNumber: "",
+          specialties: "",
+          experience: "",
+        });
+        setTimeout(() => {
+          navigate("/adminHome");
+          window.location.reload();
+        }, 100);
       }
     } catch (err) {
-      console.error('Error creating stylist:', err);
+      console.error("Error creating stylist:", err);
     }
   };
-
   return (
     <div className="max-w-md mx-auto mt-10">
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-2xl font-bold mb-6 text-center">Create New Stylist</h2>
-        
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          Create New Stylist
+        </h2>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="name"
+          >
             Name
           </label>
           <input
@@ -68,9 +71,11 @@ const AdminStylists = () => {
             required
           />
         </div>
-
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="lastName"
+          >
             Last Name
           </label>
           <input
@@ -83,9 +88,11 @@ const AdminStylists = () => {
             required
           />
         </div>
-
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
             Email
           </label>
           <input
@@ -98,9 +105,11 @@ const AdminStylists = () => {
             required
           />
         </div>
-
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNumber">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="phoneNumber"
+          >
             Phone Number
           </label>
           <input
@@ -113,7 +122,6 @@ const AdminStylists = () => {
             required
           />
         </div>
-
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -123,9 +131,10 @@ const AdminStylists = () => {
           </button>
         </div>
       </form>
-      {error && <p className="text-red-500 text-xs italic">Error: {error.message}</p>}
+      {error && (
+        <p className="text-red-500 text-xs italic">Error: {error.message}</p>
+      )}
     </div>
   );
 };
-
 export default AdminStylists;

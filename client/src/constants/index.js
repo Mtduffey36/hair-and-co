@@ -25,12 +25,12 @@ export const LINKS = [
   {
     name: "Home",
     link: "/",
-    roles: [0, 1, 2], 
+    roles: [0, 1, 2],
   },
   {
     name: "Book appointment",
     link: "/booking",
-    roles: [0], 
+    roles: [0],
   },
   {
     name: "Services",
@@ -40,12 +40,12 @@ export const LINKS = [
   {
     name: "Stylists",
     link: "#portfolio",
-    roles: [0], 
+    roles: [0],
   },
   {
     name: "Our Work",
     link: "#OurWork",
-    roles: [0], 
+    roles: [0],
   },
   {
     name: "About",
@@ -60,12 +60,17 @@ export const LINKS = [
   {
     name: "Contact",
     link: "#contact",
-    roles: [0, 1, 2] 
+    roles: [0, 1, 2]
   },
   {
     name: "Sign In",
     link: "#sign-in",
     roles: [0, 1, 2],
+  },
+  {
+    name: "My Dashboard",
+    link: "/UserDashboard",
+    roles: [0],
   },
   {
     name: "Admin Home",
@@ -87,21 +92,25 @@ export const LINKS = [
     link: "/AdminAppointments",
     roles: [2],
   },
-  
+  {
+    name: "Dashboard",
+    link: "/StylistsDashboard",
+    roles: [1],
+  },
   {
     name: "Profile",
     link: "/StylistProfile",
     roles: [1],
   },
   {
-    name: "Stylist Appointments",
+    name: "Appointments",
     link: "/StylistAppointments",
     roles: [1],
   },
   {
     name: "Sign Out",
     link: "#sign-out",
-    roles: [0, 1, 2], 
+    roles: [0, 1, 2],
   },
 ];
 
@@ -169,7 +178,7 @@ export const PORTFOLIO_PROJECTS = [
     id: 1,
     name: "Megan",
     description:
-    "Click to view profile",
+      "Click to view profile",
     image: portfolio1,
     link: "/meganPortfolio",
   },
@@ -177,7 +186,7 @@ export const PORTFOLIO_PROJECTS = [
     id: 2,
     name: "Mallory",
     description:
-    "Click to view profile",
+      "Click to view profile",
     image: portfolio2,
     link: "/malloryPortfolio",
   },
@@ -203,27 +212,27 @@ export const REVIEWS = {
     {
       name: "Karen Gregory",
       review:
-      "Hair and Company is a wonderful place to get you hair cut. Not only are the hairstylists very professional and do an excellent job, but there is such a positive atmosphere filled with love. I always leave happier than when I arrived.",
+        "Hair and Company is a wonderful place to get you hair cut. Not only are the hairstylists very professional and do an excellent job, but there is such a positive atmosphere filled with love. I always leave happier than when I arrived.",
     },
     {
       name: "Brittany Pantello",
       review:
-      "The experience was top notch and my hair looks great",
+        "The experience was top notch and my hair looks great",
     },
     {
       name: "Laura Simons Murphy",
       review:
-      "Love me some Megan Pitts! Beautiful person inside and out! Great at what she does!",
+        "Love me some Megan Pitts! Beautiful person inside and out! Great at what she does!",
     },
     {
       name: "Donna Davis",
       review:
-      "Love Hair and Company Jennifer does fantastic with color and cut!  I always leave feeling beautiful because of her talent and knowledge of knowing what is best for my hair!",
+        "Love Hair and Company Jennifer does fantastic with color and cut!  I always leave feeling beautiful because of her talent and knowledge of knowing what is best for my hair!",
     },
     {
       name: "Kammy Miller",
       review:
-      "Holly has cut my hair since I was 17 back in 1992!!!! Now she cuts my kids hair too. She is a wonderful godly woman",
+        "Holly has cut my hair since I was 17 back in 1992!!!! Now she cuts my kids hair too. She is a wonderful godly woman",
     },
   ],
 };
