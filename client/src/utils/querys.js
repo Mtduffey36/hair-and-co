@@ -41,6 +41,29 @@ query StylistAppointments($stylistId: ID!, $date: String!) {
   }
 }
 `;
+export const GET_STYLIST_APPOINTMENTS_BY_EMAIL = gql`
+  query StylistAppointmentsByEmail($email: String!) {
+    stylistAppointmentsByEmail(email: $email) {
+      email
+      firstName
+      lastName
+      notes
+      date
+      time
+      service {
+        name
+        duration
+        price
+      }
+      stylist {
+        name
+        email
+      }
+    }
+  }
+`;
+
+
 //Get users
 export const GET_USERS = gql`
   query GetUsers {

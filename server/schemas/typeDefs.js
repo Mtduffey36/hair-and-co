@@ -34,7 +34,6 @@ type User {
     isDefaultPassword: Boolean!
 
   }
-
   type Appointment {
     _id: ID
     firstName: String
@@ -87,6 +86,7 @@ type DeletedAppointmentResponse {
     reviews: [Review]
     review(reviewId: ID!): Review
     userAppointments(email: String!): [Appointment!]!
+    stylistAppointmentsByEmail(email: String!): [Appointment]!
   }
 
   type Mutation {

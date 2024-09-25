@@ -40,6 +40,29 @@ const resolvers = {
         }));
       });
     },
+    stylistAppointmentsByEmail: async (_, { email }, context) => {
+      const stylist = await Stylist.findOne({ email });
+      if (!stylist) {
+        throw new Error('Stylist not found');
+      }
+      
+      const appointments = await Appointment.find({ stylistId: stylist._id })
+        .populate('stylistId', '_id name email')
+        .populate('serviceId', '_id name duration');
+      return appointments.map(appointment => ({
+        _id: appointment._id,
+        firstName: appointment.firstName,
+        lastName: appointment.lastName,
+        email: appointment.email,
+        phoneNumber: appointment.phoneNumber,
+        date: appointment.date,
+        time: appointment.time,
+        status: appointment.status,
+        notes: appointment.notes,
+        stylistId: appointment.stylistId,
+        serviceId: appointment.serviceId
+      }));
+    },
     appointments: async () => {
       return Appointment.find().populate('stylistId serviceId');
     },
