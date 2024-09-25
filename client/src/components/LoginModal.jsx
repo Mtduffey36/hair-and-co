@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations'; 
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../utils/auth';
-import { jwtDecode } from 'jwt-decode';
-import { useApolloClient } from '@apollo/client';
-
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../utils/auth";
+import { jwtDecode } from "jwt-decode";
+import { useApolloClient } from "@apollo/client";
 const LoginModal = ({ isOpen, onClose }) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState('');
+  const [loginError, setLoginError] = useState("");
   const { login: authLogin } = useAuth();
   const client = useApolloClient();
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -21,59 +19,57 @@ const LoginModal = ({ isOpen, onClose }) => {
       [name]: value,
     });
   };
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await login({
         variables: { ...formState },
       });
-      
-      localStorage.setItem('token', data.login.token);
-      
+      localStorage.setItem("token", data.login.token);
       authLogin(data.login.token);
-      await client.resetStore(); 
+      await client.resetStore();
       const decodedToken = jwtDecode(data.login.token);
       const { role, isDefaultPassword, isStylist } = decodedToken.user;
-  
       if (isStylist && isDefaultPassword) {
-        navigate('/ChangeDefaultPassword');
+        navigate("/ChangeDefaultPassword");
+        window.location.reload();
       } else if (role === 1) {
-        navigate('/StylistsDashboard');
+        navigate("/StylistsDashboard");
+        window.location.reload();
       } else if (role === 0) {
-        navigate('/UserDashboard');
+        navigate("/UserDashboard");
+        window.location.reload();
       } else if (role === 2) {
-        navigate('/adminHome');
+        navigate("/adminHome");
+        window.location.reload();
       }
       onClose();
     } catch (e) {
-      console.error('Error:', e);
+      console.error("Error:", e);
       setLoginError(e.message);
     }
   };
-
   if (!isOpen) return null;
-
   const handleClickOutside = (event) => {
-    if (event.target.id === 'modal-background') {
+    if (event.target.id === "modal-background") {
       onClose();
     }
   };
-
   return (
-    <div 
-      id="modal-background" 
-      className="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center" 
+    <div
+      id="modal-background"
+      className="fixed inset-0 z-50 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center"
       onClick={handleClickOutside}
     >
-      <div className="relative p-6 border w-96 shadow-lg rounded-md bg-white" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="relative p-6 border w-96 shadow-lg rounded-md bg-white"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="text-center">
-        {loginError && (
-  <p className="text-red-500 text-xs italic mt-2">
-    
-  </p>
-)}
-          <h3 className="text-lg leading-6 font-medium text-gray-900">Sign In</h3>
+          {loginError && <p className="text-red-500 text-xs italic mt-2"></p>}
+          <h3 className="text-lg leading-6 font-medium text-gray-900">
+            Sign In
+          </h3>
           <form className="mt-2 px-7 py-3" onSubmit={handleFormSubmit}>
             <input
               className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mb-4"
@@ -100,19 +96,18 @@ const LoginModal = ({ isOpen, onClose }) => {
             </button>
           </form>
           {error && (
-            <p className="text-red-500 text-xs italic">
-              {error.message}
-            </p>
+            <p className="text-red-500 text-xs italic">{error.message}</p>
           )}
         </div>
-        <p id='or'>Don't have an account?</p>
+        <p id="or">Don't have an account?</p>
         <div className="items-center px-7 py-3">
           <button
             id="ok-btn"
             className="px-4 py-2 bg-rosy-brown text-white text-base font-medium rounded-xl w-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300"
-            onClick={() => { 
+            onClick={() => {
               onClose();
-              navigate('/signup')}}
+              navigate("/signup");
+            }}
           >
             Create Account
           </button>
@@ -131,5 +126,4 @@ const LoginModal = ({ isOpen, onClose }) => {
     </div>
   );
 };
-
 export default LoginModal;
