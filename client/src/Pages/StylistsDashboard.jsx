@@ -28,7 +28,7 @@ const StylistsDashboard = () => {
   const { loading, error, data } = useQuery(GET_STYLIST_APPOINTMENTS_BY_EMAIL, {
     variables: { email: user?.email },
     skip: !user?.email,
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only' //This gonna force the query to always reach for server instead local storage
   });
 
 
