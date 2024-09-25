@@ -25,7 +25,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './utils/calendar.css';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql'
+  uri: '/graphql'
 });
 
 const authLink = setContext((_,{headers})=>{
