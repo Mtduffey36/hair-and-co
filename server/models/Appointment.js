@@ -50,6 +50,12 @@ const appointmentSchema = new Schema({
   },
 });
 
+appointmentSchema.index({ email: 1 });
+
+appointmentSchema.pre('find', function() {
+  this.populate('stylistId').populate('serviceId');
+});
+
 const Appointment = model('Appointment', appointmentSchema);
 
 module.exports = Appointment;

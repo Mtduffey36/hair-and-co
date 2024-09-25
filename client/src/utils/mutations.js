@@ -118,7 +118,7 @@ mutation DeleteStylist($stylistId: ID!) {
     _id
   }
 }
-`
+`;
 export const UPDATE_STYLIST_PASSWORD = gql`
   mutation UpdateStylistPassword($email: String!, $password: String!) {
     updateStylistPassword(email: $email, password: $password) {
@@ -128,6 +128,14 @@ export const UPDATE_STYLIST_PASSWORD = gql`
         email
         isDefaultPassword
       }
+    }
+  }
+`;
+
+export const CANCEL_APPOINTMENT = gql`
+  mutation CancelAppointment($id: ID!) {
+    cancelAppointment(id: $id) {
+      _id
     }
   }
 `;

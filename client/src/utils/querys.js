@@ -55,3 +55,22 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const GET_USER_APPOINTMENTS = gql`
+  query GetUserAppointments($email: String!) {
+    userAppointments(email: $email) {
+      _id
+      date
+      time
+      stylist {
+        name
+      }
+      service {
+        name
+        price
+        duration
+      }
+      email
+    }
+  }
+`;
