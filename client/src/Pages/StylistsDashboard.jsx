@@ -2,7 +2,6 @@ import React from 'react';
 import { useAuth } from '../utils/auth';
 import MyCalendar from '../components/AdminCal';
 
-
 const StylistsDashboard = () => {
   const { user } = useAuth();
 
@@ -23,7 +22,7 @@ const StylistsDashboard = () => {
       <p className="mt-2">This is your personal dashboard.</p>
     </div> 
     <div>
-      <MyCalendar events={myEventsList} style={{ height: '500px' }}/>
+      <MyCalendar events={myEventsList}/>
     </div>
     </>
   );

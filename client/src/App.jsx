@@ -22,6 +22,7 @@ import UserDashboard from "./Pages/UserDashboard";
 import StylistsDashboard from "./Pages/StylistsDashboard";
 import ChangeDefaultPassword from "./Pages/ChangeDefaultPassword";
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import './utils/calendar.css';
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
